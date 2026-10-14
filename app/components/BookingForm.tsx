@@ -51,7 +51,7 @@ const SERVICES = [
   },
   {
     id: "facial",
-    slug: "consult-dr-kharyl",
+    slug: "skinthera-consultation",
     icon: "fa-spa",
     name: "Facial & Skin Treatments",
     desc: "Medical-grade facials & peels",
@@ -61,7 +61,7 @@ const SERVICES = [
   },
   {
     id: "iv",
-    slug: "consult-dr-kharyl",
+    slug: "skinthera-consultation",
     icon: "fa-bottle-droplet",
     name: "IV Therapy & Wellness",
     desc: "Glutathione, Vitamin C & immunity drips",
@@ -71,7 +71,7 @@ const SERVICES = [
   },
   {
     id: "laser-hair",
-    slug: "consult-dr-kharyl",
+    slug: "skinthera-consultation",
     icon: "fa-sun",
     name: "Laser Hair Removal",
     desc: "Long-lasting smooth skin",
@@ -81,7 +81,7 @@ const SERVICES = [
   },
   {
     id: "other",
-    slug: "consult-dr-kharyl",
+    slug: "skinthera-consultation",
     icon: "fa-circle-plus",
     name: "Other / Consultation",
     desc: "Not sure? Let's talk first",

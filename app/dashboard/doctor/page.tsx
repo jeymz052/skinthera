@@ -134,8 +134,10 @@ export default function DoctorDashboard() {
     </div>
   );
 
-  const doctorName =
-    (user?.user_metadata?.full_name as string) || (role === "superadmin" ? "Super Administrator" : "Dr. Kharyl");
+  const doctorName = (user?.user_metadata?.full_name as string)
+    || (role === "superadmin" ? "Super Administrator"
+      : user?.email?.toLowerCase() === "angelozambrano@gmail.com" ? "Dr. Angelo G. Zambrano, RRT"
+      : "Dr. Clench Jane A. Zambrano, RMT");
 
   const stats = [
     { icon: "fa-calendar-day",   label: "Today's Procedures", value: todayBookings.length.toString(),                                    sub: "Scheduled today"       },
@@ -286,7 +288,7 @@ export default function DoctorDashboard() {
           </button>
           <div>
             <p className="dk-workspace-eyebrow">Skinthera</p>
-            <p className="dk-workspace-title">{view === "all-appts" ? "Manage Appointments" : view === "emr" ? "Patient Records" : view === "consultations" ? "Consultations" : view === "treatments" ? "Treatment Workspace" : "Dr. Kharyl Workspace"}</p>
+            <p className="dk-workspace-title">{view === "all-appts" ? "Manage Appointments" : view === "emr" ? "Patient Records" : view === "consultations" ? "Consultations" : view === "treatments" ? "Treatment Workspace" : "Skinthera Doctor Workspace"}</p>
             <p style={{ fontSize: "0.7rem", color: "#9a7a84", marginTop: "0.1rem" }}>
               <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: "#16a34a", marginRight: "0.4rem", verticalAlign: "middle" }} />
               Skinthera · Tacurong City · {dayName}, {dateStr}

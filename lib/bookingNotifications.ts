@@ -18,7 +18,7 @@ function firstRelated<T>(value: T | T[] | null) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-const appUrl = (process.env.APP_URL || "https://thekliniqueph.com").replace(/\/$/, "");
+const appUrl = (process.env.APP_URL || "https://skinthera.ph").replace(/\/$/, "");
 
 function escapeHtml(value: string) {
   return value.replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character] || character);
@@ -147,7 +147,7 @@ export async function notifyConsultationFollowUpRecommended(admin: AdminClient, 
   const patient = users.find((item) => item.email?.toLowerCase() === client.email?.toLowerCase());
   const scheduleHint = recommendedDate ? ` Recommended date: ${displayDate(recommendedDate)}.` : "";
   const noteHint = notes ? ` ${notes}` : "";
-  const message = `Dr. Kharyl recommends a separate follow-up check-up.${scheduleHint}${noteHint} Book an available slot and pay the full PHP 500 follow-up fee to confirm it.`;
+  const message = `The Skinthera medical team recommends a separate follow-up check-up.${scheduleHint}${noteHint} Book an available slot and pay the full PHP 500 follow-up fee to confirm it.`;
   const href = `/dashboard/patient?view=book&service=follow-up-check-up&parent=${encodeURIComponent(appointmentId)}`;
   if (patient) await addAppNotice(admin, patient.id, details, "consultation_follow_up_recommended", "Follow-up check-up recommended", message, href);
   await sendEmailOnce(

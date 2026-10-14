@@ -15,7 +15,7 @@ export default function LandingContactForm() {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     if (!serviceId || !templateId || !publicKey) {
       setStatus("error");
-      setMessage("Online messaging is being configured. Please email thekliniqueinfo@gmail.com or call 0969 487 2272.");
+      setMessage("Online messaging is being configured. Please message Skinthera on Facebook or call 0969 487 2272.");
       return;
     }
 
@@ -42,7 +42,7 @@ export default function LandingContactForm() {
         <label><span>Inquiry type</span><select name="inquiry_type" defaultValue=""><option value="" disabled>Select a topic</option><option>Consultation</option><option>Treatment</option><option>Package</option><option>Existing appointment</option><option>General inquiry</option></select></label>
         <label className="landing-contact-form-full"><span>How can we help?</span><textarea name="message" rows={5} placeholder="Tell us about your concern or the service you’re interested in." required /></label>
       </div>
-      <input type="hidden" name="to_email" value="thekliniqueinfo@gmail.com" />
+      <input type="hidden" name="to_email" value="Skinthera Medical Aesthetic" />
       {message && <p className={`landing-contact-feedback ${status}`} role={status === "error" ? "alert" : "status"}><i className={`fa-solid ${status === "sent" ? "fa-circle-check" : "fa-circle-exclamation"}`} /> {message}</p>}
       <button type="submit" disabled={status === "sending"}><i className={`fa-solid ${status === "sending" ? "fa-spinner fa-spin" : "fa-paper-plane"}`} />{status === "sending" ? "Sending…" : "Send message"}</button>
     </form>

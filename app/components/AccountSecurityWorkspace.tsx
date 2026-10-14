@@ -44,7 +44,7 @@ export default function AccountSecurityWorkspace({ email = "" }: { email?: strin
         </div>
         <footer><span><i className="fa-solid fa-shield-halved" /> Secure account update</span><button disabled={saving}>{saving ? "Updating..." : "Change password"}</button></footer>
       </form>
-      <aside className="account-security"><i className="fa-solid fa-shield-heart" /><h2>Account security</h2><p>You are signed in as <strong>{email}</strong>. Never share your password or one-time sign-in codes.</p><Link href="mailto:thekliniqueinfo@gmail.com">Report an account concern <i className="fa-solid fa-arrow-right" /></Link></aside>
+      <aside className="account-security"><i className="fa-solid fa-shield-heart" /><h2>Account security</h2><p>You are signed in as <strong>{email}</strong>. Never share your password or one-time sign-in codes.</p><Link href="https://www.facebook.com/profile.php?id=61591722818218">Report an account concern <i className="fa-solid fa-arrow-right" /></Link></aside>
     </div>
   </div>;
 }

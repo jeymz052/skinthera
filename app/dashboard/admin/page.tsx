@@ -251,7 +251,7 @@ export default function AdminDashboard() {
                 <div className="dk-kpi-icon dk-kpi-icon-black"><i className="fa-solid fa-user-doctor" /></div>
                 <span className="dk-kpi-trend label">On Duty</span>
               </div>
-              <p className="dk-kpi-value" style={{ fontSize: "1.4rem" }}>Dr. Kharyl</p>
+              <p className="dk-kpi-value" style={{ fontSize: "1.4rem" }}>Dr. Clench Jane A. Zambrano &amp; Dr. Angelo G. Zambrano</p>
               <p className="dk-kpi-label">Attending Physician</p>
             </div>
           </div>
@@ -533,7 +533,7 @@ export default function AdminDashboard() {
                     <div className="dk-info-row"><span>In-Person Clinic:</span><strong>9:00 AM – 5:00 PM</strong></div>
                     <div className="dk-info-row"><span>Virtual Consult:</span><strong>8:00 AM – 8:00 PM</strong></div>
                     <div className="dk-info-row"><span>Walk-ins:</span><strong>Not Accepted</strong></div>
-                    <div className="dk-info-row"><span>Attending Physician:</span><strong>Dr. Kharyl</strong></div>
+                    <div className="dk-info-row"><span>Attending Physicians:</span><strong>Dr. Clench Jane A. Zambrano &amp; Dr. Angelo G. Zambrano</strong></div>
                   </div>
                 </div>
               </div>

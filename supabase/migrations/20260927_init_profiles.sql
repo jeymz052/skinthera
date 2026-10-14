@@ -76,11 +76,5 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
--- 4. Seed / sync existing users with their assigned roles
-insert into public.profiles (id, email, full_name, role)
-values 
-  ('56b9db60-a794-4eb9-b92e-f83ce0052c84', 'estebanjames67@gmail.com', 'James Esteban', 'superadmin'),
-  ('30f7fc55-cabe-48b3-84d9-ac7f6f9365c4', 'thekliniqueph@gmail.com', 'Dr. Kharyl', 'doctor')
-on conflict (id) do update
-set role = excluded.role,
-    email = excluded.email;
+-- Staff is intentionally not seeded with fixed Auth UUIDs. On a fresh project,
+-- create the first Auth user and promote its profile from the SQL editor.

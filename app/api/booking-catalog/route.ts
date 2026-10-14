@@ -16,7 +16,9 @@ export async function GET() {
       supabase.from("products").select("id, name, description, price, category, subcategory").eq("is_active", true).order("sort_order"),
     ]);
     if (categoriesError || servicesError || productsError) throw categoriesError || servicesError || productsError;
-    return NextResponse.json({ categories: categories || [], services: services || [], products: products || [] });
+    const activeCategoryIds = new Set((services || []).map((service) => service.category_id));
+    const activeCategories = (categories || []).filter((category) => activeCategoryIds.has(category.id));
+    return NextResponse.json({ categories: activeCategories, services: services || [], products: products || [] });
   } catch (error) {
     console.error("Unable to load booking catalog:", error);
     return NextResponse.json({ error: "Unable to load the appointment catalog." }, { status: 500 });

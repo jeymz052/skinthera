@@ -125,7 +125,7 @@ export default function DoctorAppointmentWorkspace({ appointments, onStatusChang
             const isUpdating = updatingId === appointment.id;
             const isExpanded = expandedId === appointment.id;
             return <article className={`ma-booking-card ${isExpanded ? "expanded" : ""}`} key={appointment.id}>
-              <div className={`ma-time-card ma-time-${appointment.status}`}><span>Clinic</span><strong>{appointment.time}</strong><small>The Klinique</small></div>
+              <div className={`ma-time-card ma-time-${appointment.status}`}><span>Clinic</span><strong>{appointment.time}</strong><small>Skinthera</small></div>
               <div className="ma-patient-avatar">{initials(appointment.patient)}</div>
               <div className="ma-booking-main">
                 <div className="ma-booking-title"><h3>{appointment.patient}</h3><span className="ma-visit-pill"><i className="fa-solid fa-hospital" /> Clinic</span><span className={`dk-badge dk-badge-${appointment.status}`}>{appointmentStatusLabel(appointment)}</span></div>

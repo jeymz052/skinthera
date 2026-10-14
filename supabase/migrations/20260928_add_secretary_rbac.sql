@@ -30,9 +30,7 @@ as $$
 begin
   insert into public.profiles (id, email, full_name, role)
   values (new.id, new.email, coalesce(new.raw_user_meta_data->>'full_name', ''),
-          case when lower(new.email) in ('thekliniquekrew1@gmail.com', 'thekliniquekrew2@gmail.com')
-               then 'secretary'
-               when new.raw_app_meta_data->>'role' in ('superadmin', 'doctor', 'secretary')
+          case when new.raw_app_meta_data->>'role' in ('superadmin', 'doctor', 'secretary')
                then new.raw_app_meta_data->>'role' else 'patient' end)
   on conflict (id) do update
   set email = excluded.email,
@@ -58,34 +56,10 @@ begin
 end;
 $$;
 
--- These are the only two secretary seats. Normalize any earlier test role
--- assignments before enforcing the limit and assigning the production crew.
-update public.profiles
-set role = 'patient', updated_at = now()
-where role = 'secretary'
-  and lower(email) not in ('thekliniquekrew1@gmail.com', 'thekliniquekrew2@gmail.com');
-
 drop trigger if exists enforce_secretary_seat_limit on public.profiles;
 create trigger enforce_secretary_seat_limit
   before insert or update of role on public.profiles
   for each row execute function public.enforce_secretary_seat_limit();
-
--- Assign the two designated clinic crew accounts when their profiles already
--- exist in Auth, even if an older signup did not create a profile. If they
--- register later, handle_new_user above assigns the role automatically.
-insert into public.profiles (id, email, full_name, role)
-select id, email, coalesce(raw_user_meta_data->>'full_name', ''), 'secretary'
-from auth.users
-where lower(email) in ('thekliniquekrew1@gmail.com', 'thekliniquekrew2@gmail.com')
-on conflict (id) do update
-set email = excluded.email,
-    full_name = coalesce(nullif(excluded.full_name, ''), public.profiles.full_name),
-    role = 'secretary',
-    updated_at = now();
-
-update public.profiles
-set role = 'secretary', updated_at = now()
-where lower(email) in ('thekliniquekrew1@gmail.com', 'thekliniquekrew2@gmail.com');
 
 drop policy if exists "Users can update own profile" on public.profiles;
 create policy "Users can update own profile"
@@ -118,16 +92,8 @@ begin
   if public.current_user_role() not in ('superadmin', 'doctor') then
     raise exception 'Not authorized';
   end if;
-  if target_role not in ('doctor', 'secretary', 'patient') then
+  if target_role not in ('superadmin', 'doctor', 'secretary', 'patient') then
     raise exception 'Invalid assignable role';
-  end if;
-  if target_role = 'secretary' and lower(trim(target_email)) not in
-     ('thekliniquekrew1@gmail.com', 'thekliniquekrew2@gmail.com') then
-    raise exception 'Secretary access is restricted to the two designated clinic crew accounts.';
-  end if;
-  if lower(trim(target_email)) in
-     ('thekliniquekrew1@gmail.com', 'thekliniquekrew2@gmail.com') and target_role <> 'secretary' then
-    raise exception 'The designated clinic crew accounts must keep the secretary role.';
   end if;
   update public.profiles set role = target_role, updated_at = now()
   where lower(email) = lower(trim(target_email));

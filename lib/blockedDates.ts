@@ -18,7 +18,7 @@ export function groupBlockedDates(blocks: PublicBlockedDate[]): BlockedDatePerio
 }
 
 export function blockedDateAnnouncement(period: BlockedDatePeriod) {
-  return `Dr. Kharyl is not available ${period.start === period.end ? "on" : "from"} ${blockedDatePeriodLabel(period)}${period.reason ? `. Reason: ${period.reason}` : ""}.`;
+  return `The Skinthera doctor is not available ${period.start === period.end ? "on" : "from"} ${blockedDatePeriodLabel(period)}${period.reason ? `. Reason: ${period.reason}` : ""}.`;
 }
 
 export function blockedDatePeriodLabel(period: BlockedDatePeriod) {

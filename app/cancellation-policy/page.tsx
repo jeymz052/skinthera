@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Cancellation Policy | The Klinique",
-  description: "Cancellation and rescheduling policy for The Klinique medical aesthetic clinic.",
+  title: "Cancellation Policy | Skinthera",
+  description: "Cancellation and rescheduling policy for Skinthera Medical Aesthetic.",
 };
 
 export default function CancellationPolicyPage() {
@@ -12,8 +12,8 @@ export default function CancellationPolicyPage() {
       <div className="policy-container">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/the_klinique_logo-removebg-preview.png"
-          alt="The Klinique"
+          src="/images/skintheralogo-removebg-preview.png"
+          alt="Skinthera Medical Aesthetic"
           className="policy-logo"
         />
 
@@ -24,7 +24,7 @@ export default function CancellationPolicyPage() {
           <section className="policy-section">
             <h2>1. Appointment Confirmation</h2>
             <p>
-              All appointments at The Klinique are confirmed upon booking. We operate by appointment
+              All appointments at Skinthera are confirmed upon booking. We operate by appointment
               only to ensure each patient receives the time and attention they deserve. Please arrive
               on time for your scheduled appointment.
             </p>
@@ -90,7 +90,7 @@ export default function CancellationPolicyPage() {
           <section className="policy-section">
             <h2>6. Clinic-Initiated Cancellations</h2>
             <p>
-              In the rare event that The Klinique must cancel an appointment, we will notify you as
+              In the rare event that Skinthera must cancel an appointment, we will notify you as
               early as possible and offer to reschedule at no additional cost or issue a full refund
               of any deposit paid.
             </p>
@@ -121,10 +121,10 @@ export default function CancellationPolicyPage() {
             </p>
             <ul>
               <li>
-                <strong>Instagram DM:</strong> @thekliniqueph
+                <strong>Call or text:</strong> 0969 487 2272
               </li>
               <li>
-                <strong>Facebook:</strong> The Klinique by Dr. Kharyl
+                <strong>Facebook:</strong> Skinthera Medical Aesthetic
               </li>
               <li>
                 <strong>Patient Portal:</strong> Log in and manage your booking from your dashboard
@@ -135,7 +135,7 @@ export default function CancellationPolicyPage() {
           <section className="policy-section">
             <h2>10. Amendments</h2>
             <p>
-              The Klinique reserves the right to modify this Cancellation Policy at any time.
+              Skinthera reserves the right to modify this Cancellation Policy at any time.
               Changes will be effective immediately upon posting. Please review this policy before
               each booking.
             </p>

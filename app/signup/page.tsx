@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { AuthView } from "@/app/auth/page";
 
 export const metadata = {
-  title: "Sign Up — The Klinique Medical Aesthetics",
-  description: "Create an account to book consultations and access your patient portal at The Klinique.",
+  title: "Sign Up — Skinthera Medical Aesthetic",
+  description: "Create an account to book consultations and access your Skinthera patient portal.",
 };
 
 export default function SignUpPage() {

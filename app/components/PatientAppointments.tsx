@@ -77,7 +77,7 @@ export default function PatientAppointments({ appointments, payingAppointmentId,
             <div className="pa-date"><strong>{new Date(`${appointment.date}T00:00:00`).toLocaleDateString("en-PH", { day: "2-digit" })}</strong><span>{new Date(`${appointment.date}T00:00:00`).toLocaleDateString("en-PH", { month: "short" })}</span></div>
             <div className="pa-card-main">
               <div className="pa-card-title"><div><small>{appointment.referenceNo}</small><h3>{appointment.service}</h3></div><span className={`dk-badge dk-badge-${appointment.status}`}>{appointmentStatusLabel(appointment)}</span></div>
-              <div className="pa-meta"><span><i className="fa-regular fa-clock" /> {appointment.time}</span><span><i className="fa-solid fa-user-doctor" /> Dr. Kharyl</span><span><i className="fa-solid fa-location-dot" /> The Klinique CDO</span></div>
+              <div className="pa-meta"><span><i className="fa-regular fa-clock" /> {appointment.time}</span><span><i className="fa-solid fa-user-doctor" /> Skinthera doctor</span><span><i className="fa-solid fa-location-dot" /> Skinthera Tacurong</span></div>
               {awaitingPayment && <p className="pa-payment-note"><i className="fa-solid fa-circle-info" /> Your slot is reserved but becomes confirmed only after the reservation fee is paid.</p>}
               {pendingReschedule && <p className="pa-reschedule-note"><i className="fa-regular fa-clock" /> Reschedule requested for {new Date(`${pendingReschedule.requestedDate}T00:00:00`).toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" })} at {pendingReschedule.requestedTime}. Your current schedule remains confirmed until approved.</p>}
             </div>

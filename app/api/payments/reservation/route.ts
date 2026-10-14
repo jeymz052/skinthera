@@ -66,7 +66,7 @@ export async function POST(request: Request) {
                 email: client.email,
                 phone: client.phone,
               },
-              line_items: [{ amount: RESERVATION_FEE_CENTAVOS, currency: "PHP", name: isFollowUp ? "The Klinique follow-up check-up" : "The Klinique reservation fee", quantity: 1 }],
+              line_items: [{ amount: RESERVATION_FEE_CENTAVOS, currency: "PHP", name: isFollowUp ? "Skinthera follow-up check-up" : "Skinthera reservation fee", quantity: 1 }],
               payment_method_types: ["qrph"],
               description: `${isFollowUp ? "Full follow-up check-up fee" : "Reservation fee"} for ${appointment.reference_no}`,
               reference_number: appointment.reference_no,

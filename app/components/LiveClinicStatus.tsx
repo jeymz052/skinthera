@@ -50,7 +50,7 @@ export default function LiveClinicStatus({ onAction, actionLabel = "Book a slot"
   return <section className={`sidebar-clinic sidebar-clinic--${state}`} aria-label="Live clinic availability">
     <header className="sidebar-clinic__heading"><span>Available today</span><i className={`fa-solid ${state === "open" ? "fa-circle-check" : "fa-circle-minus"}`} /><button type="button" onClick={() => setRefreshKey((value) => value + 1)} aria-label="Refresh clinic status"><i className="fa-solid fa-rotate" /></button></header>
     <div className="sidebar-clinic__panel">
-      <div className="sidebar-clinic__identity"><span><i className="fa-solid fa-house-medical" /></span><div><strong>The Klinique</strong><small>Medical Aesthetics</small></div></div>
+      <div className="sidebar-clinic__identity"><span><i className="fa-solid fa-house-medical" /></span><div><strong>Skinthera</strong><small>Medical Aesthetic</small></div></div>
       <div className="sidebar-clinic__summary"><p className="sidebar-clinic__state"><i /><strong>{availability ? title : "Checking…"}</strong></p>{availability?.hours && <p className="sidebar-clinic__hours"><i className="fa-regular fa-clock" /> {availability.hours}</p>}</div>
       <p className="sidebar-clinic__detail">{detail}</p>
       {state === "open" && <div className="sidebar-clinic__next"><span>Next available</span><strong>{nextSlot.label}</strong></div>}

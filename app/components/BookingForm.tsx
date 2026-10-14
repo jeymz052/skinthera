@@ -120,7 +120,7 @@ const STEPS = [
   { label: "Review & Payment", icon: "fa-circle-check"      },
 ];
 
-const BOOKING_DRAFT_KEY = "theklinique.booking-draft.v1";
+const BOOKING_DRAFT_KEY = "skinthera.booking-draft.v1";
 const PACKAGE_BOOKING_SERVICE_SLUG = "glow-plans-package-booking";
 
 type BookingPolicy = "terms" | "cancellation";
@@ -307,6 +307,18 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
           }
         } else if (initialCategoryHint) {
           const hint = initialCategoryHint.toLowerCase();
+          if (hint.includes("consultation")) {
+            const consultationCategory = (result.categories as Category[]).find((item) => item.slug === "consultations");
+            const preferredSlug = hint.includes("online") ? "skinthera-online-consultation" : "skinthera-consultation";
+            const consultationService = (result.services as CatalogService[]).find((item) => item.slug === preferredSlug)
+              || (result.services as CatalogService[]).find((item) => item.category_id === consultationCategory?.id && item.slug !== "follow-up-check-up");
+            setBookingType("consultation");
+            setSelectedCategory(consultationCategory?.id || null);
+            setSelectedService(consultationService?.id || null);
+            setCartTreatmentIds([]);
+            setCartProductIds([]);
+            return;
+          }
           const aliases = hint.includes("botox") || hint.includes("neuro") ? ["botox", "neurotoxin"]
             : hint.includes("filler") ? ["filler"]
             : hint.includes("skin booster") ? ["skin booster"]
@@ -506,13 +518,16 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
     }
   };
 
-  const choosePackageCatalog = () => {
-    const packageService = catalogServices.find((item) => item.slug === PACKAGE_BOOKING_SERVICE_SLUG);
-    setBookingType("treatment");
-    setCatalogView("packages");
-    setSelectedService(packageService?.id || null);
-    setSelectedCategory(packageService?.category_id || null);
+  const chooseConsultation = (slug: "skinthera-consultation" | "skinthera-online-consultation") => {
+    setBookingType("consultation");
+    setCatalogView("treatments");
     setCartTreatmentIds([]);
+    setCartProductIds([]);
+    const consultationCategory = categories.find((item) => item.slug === "consultations");
+    const consultationService = catalogServices.find((item) => item.slug === slug)
+      || catalogServices.find((item) => item.category_id === consultationCategory?.id && item.slug !== "follow-up-check-up");
+    setSelectedCategory(consultationCategory?.id || null);
+    setSelectedService(consultationService?.id || null);
   };
 
   const chooseTreatmentCatalog = () => {
@@ -669,7 +684,7 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
         <strong>Schedule advisory</strong>
         {blockedPeriods.map((period) => (
           <p key={`${period.start}-${period.end}-${period.reason || "unavailable"}`}>
-            <span>Dr. Kharyl is not available {period.start === period.end ? "on" : "from"}</span>
+            <span>The Skinthera doctors are not available {period.start === period.end ? "on" : "from"}</span>
             <b>{blockedDatePeriodLabel(period)}</b>
             {period.reason && <span>({period.reason})</span>}
           </p>
@@ -706,14 +721,14 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
           <div className="bk-modal-topbar-left">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/the_klinique_logo-removebg-preview.png"
-              alt="The Klinique"
+              src="/images/skintheralogo-removebg-preview.png"
+              alt="Skinthera Medical Aesthetic"
               className="bk-modal-logo"
             />
             <div>
               <p className="bk-modal-clinic">Book an Appointment</p>
               <p className="bk-modal-doctor">
-                <i className="fa-solid fa-user-doctor" /> Dr. Kharyl
+                <i className="fa-solid fa-user-doctor" /> Skinthera Doctors
               </p>
             </div>
           </div>
@@ -731,15 +746,15 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
         <div className="bk-standalone-header">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/the_klinique_logo-removebg-preview.png"
-            alt="The Klinique"
+            src="/images/skintheralogo-removebg-preview.png"
+            alt="Skinthera Medical Aesthetic"
             className="bk-standalone-logo"
           />
           <div className="bk-standalone-meta">
             <h1 className="bk-standalone-title">Book an Appointment</h1>
             <p className="bk-standalone-sub">
               <i className="fa-solid fa-user-doctor" />
-              Dr. Kharyl
+              Skinthera Doctors
             </p>
           </div>
           {compactBlockedAnnouncement}
@@ -775,21 +790,21 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
             <div className="bk-panel-head">
               <span className="bk-panel-icon"><i className="fa-solid fa-kit-medical" /></span>
               <div>
-                <h2 className="bk-panel-title">Choose Your Treatment</h2>
-                <p className="bk-panel-sub">Select the service you&apos;d like to book with Dr. Kharyl</p>
+                <h2 className="bk-panel-title">Choose Your Visit</h2>
+                <p className="bk-panel-sub">Select how you&apos;d like to begin with Skinthera</p>
               </div>
             </div>
 
             <div className={`bk-service-catalog ${bookingType === "consultation" ? "is-consultation" : ""}`}>
               <div className="bk-booking-mode">
-                <button type="button" disabled={!categories.length || !catalogServices.length} className={bookingType === "consultation" ? "selected" : ""} onClick={() => chooseBookingType("consultation")}>
-                  <span><i className="fa-solid fa-user-doctor" /></span><div><small>Assessment only</small><strong>Consultation</strong><p>Meet Dr. Kharyl for evaluation and a personalized treatment plan.</p></div><i className="fa-solid fa-chevron-right" />
+                <button type="button" disabled={!categories.length || !catalogServices.length} className={service?.slug === "skinthera-consultation" ? "selected" : ""} onClick={() => chooseConsultation("skinthera-consultation")}>
+                  <span><i className="fa-solid fa-user-doctor" /></span><div><small>In-clinic assessment</small><strong>Consultation</strong><p>Meet a Skinthera doctor for evaluation and a personalized care plan.</p></div><i className="fa-solid fa-chevron-right" />
+                </button>
+                <button type="button" disabled={!categories.length || !catalogServices.length} className={service?.slug === "skinthera-online-consultation" ? "selected" : ""} onClick={() => chooseConsultation("skinthera-online-consultation")}>
+                  <span><i className="fa-solid fa-video" /></span><div><small>Remote assessment</small><strong>Online Consultation</strong><p>Talk with a Skinthera doctor wherever you are.</p></div><i className="fa-solid fa-chevron-right" />
                 </button>
                 <button type="button" disabled={!categories.length || !catalogServices.length} className={bookingType === "treatment" && catalogView === "treatments" ? "selected" : ""} onClick={chooseTreatmentCatalog}>
                   <span><i className="fa-solid fa-syringe" /></span><div><small>Book procedures</small><strong>Medical Treatment</strong><p>Select one or more treatments and add them to your appointment cart.</p></div><i className="fa-solid fa-chevron-right" />
-                </button>
-                <button type="button" disabled={!products.length} className={bookingType === "treatment" && catalogView === "packages" ? "selected" : ""} onClick={choosePackageCatalog}>
-                  <span><i className="fa-solid fa-gift" /></span><div><small>Book a package</small><strong>Glow Plans (Packages)</strong><p>Browse clinic packages and add your preferred plan to the appointment cart.</p></div><i className="fa-solid fa-chevron-right" />
                 </button>
               </div>
 
@@ -805,7 +820,7 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
                     const added = primary || cartTreatmentIds.includes(item.id);
                     return <article key={item.id} className={`bk-catalog-card ${added ? "selected" : ""}`}>
                       <div className="bk-catalog-card-icon"><i className={`fa-solid ${treatmentIcon(item)}`} /></div>
-                      <div className="bk-catalog-card-copy"><small>{categories.find((category) => category.id === item.category_id)?.name} · {item.subcategory}</small><strong>{item.name}</strong>{item.description && <p>{item.description}</p>}<span>{item.duration_mins && <><i className="fa-regular fa-clock" /> {item.duration_mins} min</>}<b>PHP {Number(item.price).toLocaleString()}</b></span></div>
+                      <div className="bk-catalog-card-copy"><small>{categories.find((category) => category.id === item.category_id)?.name} · {item.subcategory}</small><strong>{item.name}</strong>{item.description && <p>{item.description}</p>}<span>{item.duration_mins && <><i className="fa-regular fa-clock" /> {item.duration_mins} min</>}{Number(item.price)>0&&<b>PHP {Number(item.price).toLocaleString()}</b>}</span></div>
                       <button type="button" className={added ? "is-added" : ""} onClick={() => toggleCatalogTreatment(item.id)}>{added ? <><i className="fa-solid fa-check" /> In cart</> : <><i className="fa-solid fa-plus" /> Add</>}</button>
                     </article>;
                   })}
@@ -1041,14 +1056,14 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
               <span className="bk-panel-icon"><i className="fa-solid fa-calendar-days" /></span>
               <div>
                 <h2 className="bk-panel-title">Select Date & Time</h2>
-                <p className="bk-panel-sub">Choose your preferred appointment slot with Dr. Kharyl</p>
+                <p className="bk-panel-sub">Choose your preferred Skinthera appointment slot</p>
               </div>
             </div>
 
             <div className="bk-schedule-context">
-              <div><span><i className="fa-solid fa-user-doctor" /></span><p>Doctor<strong>Dr. Kharyl</strong></p></div>
+              <div><span><i className="fa-solid fa-user-doctor" /></span><p>Doctors<strong>Skinthera Medical Team</strong></p></div>
               <div><span><i className="fa-solid fa-clock" /></span><p>Slot interval<strong>Every 1 hour</strong></p></div>
-              <div><span><i className="fa-solid fa-location-dot" /></span><p>Location<strong>The Klinique CDO</strong></p></div>
+              <div><span><i className="fa-solid fa-location-dot" /></span><p>Location<strong>Skinthera · Tacurong City</strong></p></div>
             </div>
 
             <div className="bk-datetime-layout">
@@ -1085,7 +1100,7 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
                         type="button"
                         className={`bk-cal-day ${selectedDate === dateStr ? "selected" : ""} ${past ? "past" : ""} ${block ? "blocked" : ""}`}
                         disabled={past || Boolean(block)}
-                        title={block ? block.reason || "Dr. Kharyl is not available on this date." : undefined}
+                        title={block ? block.reason || "The clinic is not available on this date." : undefined}
                         aria-label={block ? `${dateStr}, blocked${block.reason ? `: ${block.reason}` : ""}` : dateStr}
                         onClick={() => {
                           if (past || block) return;
@@ -1216,8 +1231,8 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
                   <dl>
                     <div><dt>Date</dt><dd>{selectedDate}</dd></div>
                     <div><dt>Time</dt><dd>{selectedTime}</dd></div>
-                    <div><dt>Doctor</dt><dd>Dr. Kharyl</dd></div>
-                    <div><dt>Clinic</dt><dd>The Klinique · Cagayan de Oro</dd></div>
+                    <div><dt>Doctor</dt><dd>Skinthera Medical Team</dd></div>
+                    <div><dt>Clinic</dt><dd>Skinthera · Tacurong City</dd></div>
                   </dl>
                 </section>
                 <section className="bk-review-section">
@@ -1233,9 +1248,9 @@ export default function BookingForm({ isModal = false, embedded = false, onClose
               </div>
 
               {bookingType === "treatment" && bookedTreatments.length > 0 && <section className="bk-aftercare">
-                <div className="bk-aftercare-head"><span><i className="fa-solid fa-hand-holding-medical" /></span><div><p className="bk-reservation-eyebrow">Clinic-provided guidance</p><h3>Aftercare for your treatments</h3><p>Preview only. Dr. Kharyl and the clinic team will review and provide your final personalized aftercare instructions before you leave.</p></div></div>
+                <div className="bk-aftercare-head"><span><i className="fa-solid fa-hand-holding-medical" /></span><div><p className="bk-reservation-eyebrow">Clinic-provided guidance</p><h3>Aftercare for your treatments</h3><p>Preview only. Your Skinthera doctor will review and provide your final personalized aftercare instructions before you leave.</p></div></div>
                 <div className="bk-aftercare-list">{bookedTreatments.map((item) => <details key={item.id}><summary><span><i className={`fa-solid ${treatmentIcon(item)}`} /> {item.name}</span><i className="fa-solid fa-chevron-down" /></summary><ul>{aftercareFor(item).map((instruction) => <li key={instruction}>{instruction}</li>)}</ul></details>)}</div>
-                <div className="bk-aftercare-alert"><i className="fa-solid fa-phone-volume" /><span>For urgent or unexpected symptoms after treatment, contact The Klinique immediately and follow the emergency advice given by your doctor.</span></div>
+                <div className="bk-aftercare-alert"><i className="fa-solid fa-phone-volume" /><span>For urgent or unexpected symptoms after treatment, contact Skinthera immediately and follow the emergency advice given by your doctor.</span></div>
               </section>}
 
               <div className="bk-review-notice">

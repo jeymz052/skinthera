@@ -15,7 +15,7 @@ export default function LandingContactForm() {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     if (!serviceId || !templateId || !publicKey) {
       setStatus("error");
-      setMessage("Online messaging is being configured. Please email thekliniqueinfo@gmail.com or call +63 956 003 1916.");
+      setMessage("Online messaging is being configured. Please email thekliniqueinfo@gmail.com or call 0969 487 2272.");
       return;
     }
 
@@ -25,7 +25,7 @@ export default function LandingContactForm() {
       await emailjs.sendForm(serviceId, templateId, form, { publicKey });
       form.reset();
       setStatus("sent");
-      setMessage("Thank you. Your message was sent to The Klinique.");
+      setMessage("Thank you. Your message was sent to Skinthera.");
     } catch {
       setStatus("error");
       setMessage("We couldn’t send your message. Please try again or contact the clinic directly.");

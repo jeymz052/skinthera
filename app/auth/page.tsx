@@ -2,6 +2,7 @@
 
 import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { resolveUserRole, getDashboardRoute, type UserRole } from "@/lib/rbac";
@@ -14,6 +15,13 @@ type FieldErrors = Partial<Record<"email" | "password" | "confirmPassword" | "ag
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const VERIFICATION_LINK_HOURS = 1;
 const RESEND_COOLDOWN_SECONDS = 60;
+const AUTH_HERO_IMAGES = [
+  "/images/skintherahero3.png",
+  "/images/skintherahero2.png",
+  "/images/skintherahero5.png",
+  "/images/skintherahero4.png",
+  "/images/skintherahero1.png",
+];
 
 function passwordValidationMessage(value: string) {
   if (value.length < 10 || !/[a-z]/.test(value) || !/[A-Z]/.test(value) || !/\d/.test(value) || !/[^A-Za-z0-9]/.test(value)) {
@@ -26,19 +34,19 @@ function passwordValidationMessage(value: string) {
 const TERMS_SECTIONS = [
   {
     title: "1. Acceptance of Terms",
-    body: "By accessing and using The Klinique's services, booking platform, and patient portal, you agree to be bound by these Terms and Conditions. If you do not agree to all the terms, please do not use our services.",
+    body: "By accessing and using Skinthera's services, booking platform, and patient portal, you agree to be bound by these Terms and Conditions. If you do not agree to all the terms, please do not use our services.",
   },
   {
     title: "2. Services",
-    body: "The Klinique is a medical aesthetic clinic offering treatments including but not limited to Botox, dermal fillers, skin boosters, laser treatments, facial treatments, IV therapy, and other aesthetic services. All services are performed or supervised by licensed medical professionals.",
+    body: "Skinthera is a medical aesthetic clinic offering treatments including but not limited to Botox, dermal fillers, skin boosters, laser treatments, facial treatments, IV therapy, and other aesthetic services. All services are performed or supervised by licensed medical professionals.",
   },
   {
     title: "3. Medical Disclaimer",
-    body: "All treatments at The Klinique are medical procedures performed by Dr. Kharyl, Medical and Aesthetic Doctor. Results may vary between individuals. A thorough consultation is required before any treatment. We reserve the right to decline any service if deemed medically inappropriate.",
+    body: "All treatments at Skinthera are performed or supervised by licensed medical professionals. Results may vary between individuals. A thorough consultation is required before any treatment. We reserve the right to decline any service if deemed medically inappropriate.",
   },
   {
     title: "4. Booking & Appointments",
-    body: "Appointments are by appointment only. Bookings are confirmed upon receipt of any required deposit or confirmation. The Klinique reserves the right to reschedule or cancel appointments with reasonable notice. Walk-in consultations are subject to availability.",
+    body: "Appointments are by appointment only. Bookings are confirmed upon receipt of any required deposit or confirmation. Skinthera reserves the right to reschedule or cancel appointments with reasonable notice. Walk-in consultations are subject to availability.",
   },
   {
     title: "5. Payment Terms",
@@ -54,15 +62,15 @@ const TERMS_SECTIONS = [
   },
   {
     title: "8. Intellectual Property",
-    body: "All content on The Klinique's website and platforms — including images, text, logos, and design — is the property of The Klinique and is protected by Philippine copyright law. Reproduction without written permission is prohibited.",
+    body: "All content on Skinthera's website and platforms — including images, text, logos, and design — is the property of Skinthera and is protected by Philippine copyright law. Reproduction without written permission is prohibited.",
   },
   {
     title: "9. Limitation of Liability",
-    body: "The Klinique is not liable for any indirect, incidental, or consequential damages arising from the use of our services. Our liability is limited to the value of the treatment rendered.",
+    body: "Skinthera is not liable for any indirect, incidental, or consequential damages arising from the use of our services. Our liability is limited to the value of the treatment rendered.",
   },
   {
     title: "10. Governing Law",
-    body: "These Terms and Conditions are governed by the laws of the Republic of the Philippines. Any disputes shall be resolved through the appropriate legal channels in Cagayan de Oro City, Misamis Oriental.",
+    body: "These Terms and Conditions are governed by the laws of the Republic of the Philippines. Any disputes shall be resolved through the appropriate legal channels in Tacurong City, Sultan Kudarat.",
   },
 ];
 
@@ -70,7 +78,7 @@ const TERMS_SECTIONS = [
 const CANCELLATION_SECTIONS = [
   {
     title: "1. Appointment Confirmation",
-    body: "All appointments at The Klinique are confirmed upon booking. We operate by appointment only to ensure each patient receives the time and attention they deserve. Please arrive on time for your scheduled appointment.",
+    body: "All appointments at Skinthera are confirmed upon booking. We operate by appointment only to ensure each patient receives the time and attention they deserve. Please arrive on time for your scheduled appointment.",
   },
   {
     title: "2. Cancellation Notice",
@@ -90,7 +98,7 @@ const CANCELLATION_SECTIONS = [
   },
   {
     title: "6. Clinic-Initiated Cancellations",
-    body: "In the rare event that The Klinique must cancel an appointment, we will notify you as early as possible and offer to reschedule at no additional cost or issue a full refund of any deposit paid.",
+    body: "In the rare event that Skinthera must cancel an appointment, we will notify you as early as possible and offer to reschedule at no additional cost or issue a full refund of any deposit paid.",
   },
   {
     title: "7. Package & Promo Bookings",
@@ -102,7 +110,7 @@ const CANCELLATION_SECTIONS = [
   },
   {
     title: "9. How to Cancel or Reschedule",
-    body: "To cancel or reschedule your appointment, please contact us via: Instagram DM @thekliniqueph · Facebook: The Klinique by Dr. Kharyl · Or log in to your Patient Portal and manage your booking from your dashboard.",
+    body: "To cancel or reschedule, call or text 0969 487 2272, message Skinthera Medical Aesthetic on Facebook, or manage your booking from the Patient Portal.",
   },
 ];
 
@@ -150,7 +158,7 @@ function PolicyModal({
             />
             <div>
               <h2 id={`policy-modal-${type}-title`} className="policy-modal-title">{title}</h2>
-              <p className="policy-modal-updated">Last updated: September 2026 · The Klinique CDO</p>
+              <p className="policy-modal-updated">Last updated: September 2026 · Skinthera Tacurong</p>
             </div>
           </div>
           <button
@@ -230,6 +238,7 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
   const [verificationEmail, setVerificationEmail] = useState(EMAIL_PATTERN.test(requestedVerificationEmail) ? requestedVerificationEmail : "");
   const [resendCooldown, setResendCooldown] = useState(0);
   const [resending, setResending] = useState(false);
+  const [authHero, setAuthHero] = useState(0);
 
   const clearMessages = () => {
     setError("");
@@ -251,6 +260,15 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
     const timer = window.setInterval(() => setResendCooldown((value) => Math.max(0, value - 1)), 1000);
     return () => window.clearInterval(timer);
   }, [resendCooldown]);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(
+      () => setAuthHero((current) => (current + 1) % AUTH_HERO_IMAGES.length),
+      8000,
+    );
+    return () => window.clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
@@ -523,6 +541,19 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
   /* ─────────────────────────────────────────────────── */
   return (
     <div className="auth-root">
+      <div className="auth-backgrounds" aria-hidden="true">
+        {AUTH_HERO_IMAGES.map((src, index) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className={index === authHero ? "is-active" : ""}
+          />
+        ))}
+      </div>
       <div className="auth-hero-overlay" />
 
       {/* ── Policy Modals ── */}
@@ -544,11 +575,11 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
       <div className="auth-container-wrap">
         <div className="auth-card-kulot" id="auth-card">
           {/* Clinic Logo centered inside the form */}
-          <Link href="/" className="auth-brand-center" title="The Klinique — Cagayan de Oro City">
+          <Link href="/" className="auth-brand-center" title="Skinthera Medical Aesthetic — Tacurong City">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/the_klinique_logo-removebg-preview.png"
-              alt="The Klinique"
+              src="/images/skintheralogo-removebg-preview.png"
+              alt="Skinthera Medical Aesthetic"
               className="auth-brand-logo"
             />
           </Link>
@@ -678,10 +709,10 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
               </p>
 
               <div className="auth-footer-kulot">
-                <p>&copy; 2026 The Klinique | All rights reserved | Powered by The Klinique</p>
+                <p>&copy; 2026 Skinthera Medical Aesthetic | All rights reserved</p>
                 <p>Having trouble?</p>
                 <div className="auth-footer-links">
-                  <a href="mailto:support@theklinique.ph">Contact Support</a>
+                  <a href="https://www.facebook.com/profile.php?id=61591722818218" target="_blank" rel="noreferrer">Contact Support</a>
                   <button
                     type="button"
                     onClick={() => setModal("cancellation")}
@@ -793,7 +824,7 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
                     onChange={(e) => { setAgreedTerms(e.target.checked); clearFieldError("agreements"); }}
                   />
                   <span>
-                    I agree with The Klinique{" "}
+                    I agree with Skinthera{" "}
                     <button
                       type="button"
                       className="auth-policy-link"
@@ -919,9 +950,9 @@ export function AuthView({ initialMode = "signin" }: { initialMode?: AuthMode })
               </p>
 
               <div className="auth-footer-kulot">
-                <p>&copy; 2026 The Klinique | All rights reserved</p>
+                <p>&copy; 2026 Skinthera Medical Aesthetic | All rights reserved</p>
                 <div className="auth-footer-links">
-                  <a href="mailto:support@theklinique.ph">Contact Support</a>
+                  <a href="https://www.facebook.com/profile.php?id=61591722818218" target="_blank" rel="noreferrer">Contact Support</a>
                 </div>
               </div>
             </form>

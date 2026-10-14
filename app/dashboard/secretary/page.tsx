@@ -82,7 +82,7 @@ export default function SecretaryDashboard() {
       <button type="button" className="dk-mobile-nav-overlay" aria-label="Close navigation" onClick={() => setMobileNavOpen(false)} />
       <aside className="dk-sidebar">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <Link href="/" className="dk-logo"><img src="/images/the_klinique_logo-removebg-preview.png" alt="The Klinique" /></Link>
+        <Link href="/" className="dk-logo"><img src="/images/skintheralogo-removebg-preview.png" alt="Skinthera" /></Link>
         <nav className="dk-nav">
           <div className="dk-nav-section">
             <div className="dk-nav-section-hdr dk-nav-section-hdr--solo"><span className="dk-nav-section-label"><i className="fa-solid fa-headset" /> Front Desk</span></div>

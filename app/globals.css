@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
-@import "tailwindcss";
-
 :root {
   --blush: #f5c6c2;
   --blush-light: #fce9e7;
@@ -13,6 +11,8 @@
   --dark: #2c1f1f;
   --text-body: #5a4a4a;
 }
+
+html,body{min-height:100%;margin:0}body{display:flex;flex-direction:column}
 
 /* Each editable landing-page text can have its own published font. */
 .text-font-elegant,.landing-page .text-font-elegant { font-family:'Cormorant Garamond',Georgia,serif!important; }
@@ -995,7 +995,7 @@ body {
 
 /* Footer */
 .footer-info {
-  background-image: url('/images/footerbg.png');
+  background-image: url('/images/skintherahero4.png');
   background-size: cover;
   background-position: center;
   color: var(--text-body);
@@ -1427,12 +1427,13 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: 2rem 1.5rem 2rem 9vw;
-  background-image: url('/images/herobg.png');
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  overflow: hidden;
+  background: #33272a;
 }
+
+.auth-backgrounds { position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+.auth-backgrounds img { object-fit:cover; object-position:center; opacity:0; transform:scale(1.025); transition:opacity 1.6s ease,transform 9s ease; }
+.auth-backgrounds img.is-active { opacity:1; transform:scale(1); }
 
 .auth-hero-overlay {
   position: absolute;
@@ -1441,6 +1442,10 @@ body {
   backdrop-filter: brightness(0.7) contrast(1.1);
   pointer-events: none;
   z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-backgrounds img { transition:none; transform:none; }
 }
 
 .auth-container-wrap {
@@ -3106,8 +3111,8 @@ body {
 
 /* Original Klinique footer with a discreet contact-information row. */
 .footer-info--extended .footer-inner { border-bottom: 0; }
-.landing-page { background: #f8e1e1 url('/images/footerbg.png') center bottom / cover no-repeat; }
-body:has(.landing-page) { background: #f8e1e1 url('/images/footerbg.png') center bottom / cover no-repeat; }
+.landing-page { background: #f5f0e7 url('/images/skintherahero4.png') center bottom / cover no-repeat; }
+body:has(.landing-page) { background: #f5f0e7 url('/images/skintherahero4.png') center bottom / cover no-repeat; }
 .footer-info--extended { background-color: #f8e1e1; background-repeat: no-repeat; }
 .footer-contact-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .75rem 1.4rem; width: min(1280px,calc(100% - 3rem)); margin: 0 auto; padding: .75rem 1rem; border-top: 1px solid rgba(196,158,120,.22); border-bottom: 1px solid rgba(196,158,120,.22); }
 .footer-contact-row a,.footer-contact-row span { display: inline-flex; align-items: center; gap: .38rem; color: #806b70; font-size: .56rem; line-height: 1.4; text-decoration: none; }.footer-contact-row i { color: var(--rose-dark); font-size: .58rem; }.footer-contact-row a:hover { color: var(--rose-dark); }
@@ -5705,3 +5710,222 @@ body:has(.landing-page) { background: #f8e1e1 url('/images/footerbg.png') center
 .builder-article-preview a{padding:0;border:0;border-radius:0;background:transparent}
 .builder-article-preview .blog-site-nav{display:grid;grid-template-columns:105px 1fr auto;align-items:center;height:62px;padding:0 2.5em;border-bottom:1px solid #eee3e6;background:#fef5f3;pointer-events:none}.builder-article-preview .blog-site-nav .blog-site-logo{justify-self:start}.builder-article-preview .blog-site-nav .blog-site-logo img{width:90px;height:48px;object-fit:contain}.builder-article-preview .blog-site-links{display:flex;justify-content:center;align-items:center;gap:1.8em}.builder-article-preview .blog-site-links>a,.builder-article-preview .blog-site-links summary{color:#604d54;font-size:1.05em;font-weight:700;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;white-space:nowrap}.builder-article-preview .blog-site-links details{position:relative}.builder-article-preview .blog-site-links summary{display:flex;align-items:center;gap:.35em;list-style:none}.builder-article-preview .blog-site-links details>div{display:none}.builder-article-preview .blog-site-actions{display:flex;justify-content:flex-end;gap:.45em}.builder-article-preview .blog-site-actions a{display:flex;align-items:center;gap:.35em;padding:.65em .8em;border:1px solid #dfbdc8;border-radius:999px;color:#604d54;font-size:.95em;font-weight:800;text-decoration:none;white-space:nowrap}.builder-article-preview .blog-site-actions .blog-site-book{border-color:#c65373;background:#c65373;color:#fff}.builder-article-preview .public-article-back{display:flex;justify-content:space-between;align-items:center;padding:1.1em 4em;border-bottom:1px solid #eee3e6;color:#9f3f5c;font-size:1.05em;font-weight:800}.builder-article-preview .public-article-featured-embed{display:block;width:88%;height:260px;margin:1em auto 3em;border:0;border-radius:14px}.builder-preview.is-mobile .builder-article-preview .blog-site-nav{grid-template-columns:1fr auto;height:auto;min-height:55px;padding:0 1.5em}.builder-preview.is-mobile .builder-article-preview .blog-site-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;width:100%;padding:.7em 0 1em;overflow:hidden}.builder-preview.is-mobile .builder-article-preview .blog-site-actions .blog-site-signin,.builder-preview.is-mobile .builder-article-preview .blog-site-actions span{display:none}.builder-preview.is-mobile .builder-article-preview .public-article-back{align-items:flex-start;flex-direction:column;gap:.6em;padding:1.2em 2em}.builder-preview.is-mobile .builder-article-preview .public-article-featured-embed{height:190px}
 @container (max-width:760px){.builder-preview:not(.is-mobile) .builder-article-preview .blog-site-nav{grid-template-columns:90px minmax(0,1fr);width:100%;box-sizing:border-box;padding-inline:2em}.builder-preview:not(.is-mobile) .builder-article-preview .blog-site-links{justify-content:flex-end;gap:1.25em;min-width:0}.builder-preview:not(.is-mobile) .builder-article-preview .blog-site-actions{display:none}}
+
+/* Skinthera public landing page */
+.skinthera-site{--st-ink:#23382f;--st-green:#496f60;--st-sage:#9bad9e;--st-cream:#f5f0e7;--st-blush:#efe1db;overflow:hidden;background:#fbfaf7;color:var(--st-ink);font-family:"Jost",Arial,sans-serif}.skinthera-site h1,.skinthera-site h2,.skinthera-site h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500}.skinthera-site em{color:#a66d63;font-weight:400}.st-nav{position:fixed;z-index:90;top:0;left:0;display:flex;justify-content:space-between;align-items:center;width:100%;height:82px;padding:0 5vw;border-bottom:1px solid rgba(73,111,96,.16);background:rgba(251,250,247,.91);backdrop-filter:blur(15px)}.st-logo{display:grid;place-items:center;width:150px;height:72px}.st-logo img{width:100%;height:100%;object-fit:contain}.st-links{display:flex;align-items:center;gap:1.65rem}.st-links>a{color:#344c42;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-decoration:none;text-transform:uppercase}.st-links>a:hover{color:#a66d63}.st-links .st-signin{padding:.68rem 1rem;border:1px solid #b8c6be;border-radius:999px}.st-book,.st-primary{border:0;border-radius:999px;background:var(--st-green);color:#fff;font-weight:750;cursor:pointer}.st-book{padding:.82rem 1.25rem}.st-menu{display:none;border:0;background:transparent;color:var(--st-ink);font-size:1.25rem}.st-hero{position:relative;height:min(850px,100svh);min-height:650px;padding-top:82px}.st-hero>img{object-fit:cover;object-position:center;opacity:0;transition:opacity 1s ease}.st-hero>img.is-active{opacity:1}.st-hero-wash{position:absolute;inset:0;background:linear-gradient(90deg,rgba(246,241,233,.98) 0%,rgba(246,241,233,.82) 37%,rgba(246,241,233,.13) 68%,rgba(35,56,47,.08))}.st-hero-copy{position:absolute;z-index:2;top:52%;left:7vw;width:min(630px,48vw);transform:translateY(-45%)}.st-kicker{display:flex;align-items:center;gap:.65rem;margin:0 0 1rem;color:#856157;font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.st-kicker span{display:inline-block;width:34px;height:1px;background:#a66d63}.st-hero h1{margin:.25rem 0 1.2rem;font-size:clamp(4rem,7.2vw,7.4rem);line-height:.78;letter-spacing:-.045em}.st-hero-copy>p:not(.st-kicker){max-width:540px;color:#53635c;font-size:1.05rem;line-height:1.75}.st-hero-copy>div{display:flex;align-items:center;gap:1.2rem;margin-top:2rem}.st-primary{padding:1rem 1.45rem}.st-primary i{margin-right:.5rem}.st-secondary{color:#3c594d;font-size:.8rem;font-weight:750;text-decoration:none}.st-secondary i{margin-left:.45rem}.st-hero-dots{position:absolute;z-index:3;right:5vw;bottom:2.2rem;display:flex;gap:.45rem}.st-hero-dots button{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:rgba(255,255,255,.65);cursor:pointer;transition:.25s}.st-hero-dots button.active{width:30px;background:#fff}.st-intro{display:grid;grid-template-columns:1.05fr .95fr;min-height:700px}.st-intro-image{position:relative;min-height:650px}.st-intro-image img{object-fit:cover}.st-intro-copy{display:flex;justify-content:center;align-items:flex-start;flex-direction:column;padding:6vw;background:var(--st-cream)}.st-intro-copy h2,.st-services h2,.st-doctor-copy h2,.st-contact h2{margin:.2rem 0 1.3rem;font-size:clamp(2.8rem,4.5vw,5.2rem);line-height:.95}.st-intro-copy>p:not(.st-kicker),.st-doctor-copy>p:not(.st-kicker),.st-contact>div>p:not(.st-kicker){max-width:580px;color:#66736d;line-height:1.8}.st-values{display:grid;gap:.9rem;margin:1.7rem 0}.st-values span{display:flex;align-items:center;gap:.8rem;color:#52645c;font-size:.9rem}.st-values i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#dce5dc;color:var(--st-green)}.st-intro-copy>button{padding:.75rem 0;border:0;border-bottom:1px solid #789082;background:transparent;color:var(--st-green);font-weight:800;cursor:pointer}.st-intro-copy>button i{margin-left:.7rem}.st-services{padding:7rem 5vw;background:#fbfaf7}.st-services>header{max-width:780px;margin:0 auto 3.2rem;text-align:center}.st-services>header .st-kicker{justify-content:center}.st-services>header>p:last-child{max-width:630px;margin:1.2rem auto;color:#718078;line-height:1.65}.st-service-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2rem;max-width:1400px;margin:auto}.st-service-grid article{position:relative;grid-column:span 2;overflow:hidden;border:1px solid #e4e5df;border-radius:26px;background:#fff;box-shadow:0 15px 45px rgba(50,73,62,.07)}.st-service-grid article:nth-child(4){grid-column:2/span 2}.st-service-image{position:relative;height:280px;overflow:hidden}.st-service-image img{object-fit:cover;transition:transform .6s}.st-service-grid article:hover .st-service-image img{transform:scale(1.045)}.st-service-icon{position:absolute;top:248px;right:1.4rem;display:grid;place-items:center;width:58px;height:58px;border:6px solid #fff;border-radius:50%;background:var(--st-green);color:#fff}.st-service-grid article>div:last-child{padding:1.6rem}.st-service-grid h3{margin:0;font-size:2rem}.st-service-grid p{min-height:50px;color:#748078;font-size:.86rem;line-height:1.55}.st-service-grid button{padding:.5rem 0;border:0;background:transparent;color:#8b655c;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}.st-service-grid button i{margin-left:.4rem}.st-booking-paths{padding:5rem 7vw;background:var(--st-green);color:#fff}.st-booking-paths header{text-align:center}.st-booking-paths .st-kicker{justify-content:center;color:#d9c6ba}.st-booking-paths h2{margin:.2rem 0 2.5rem;font-size:clamp(2.6rem,4vw,4.4rem)}.st-booking-paths>div{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1200px;margin:auto}.st-booking-paths button{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1.5rem;border:1px solid rgba(255,255,255,.2);border-radius:18px;background:rgba(255,255,255,.07);color:#fff;text-align:left;cursor:pointer;transition:.25s}.st-booking-paths button:hover{transform:translateY(-4px);background:rgba(255,255,255,.13)}.st-booking-paths button>i:first-child{font-size:1.4rem}.st-booking-paths span{display:grid;gap:.3rem}.st-booking-paths b{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem}.st-booking-paths small{color:#dce4df;line-height:1.45}.st-doctors{display:grid;grid-template-columns:.9fr 1.1fr;min-height:720px;background:#efe6df}.st-doctor-copy{display:flex;justify-content:center;align-items:flex-start;flex-direction:column;padding:7vw}.st-doctor-controls{display:flex;align-items:center;gap:1rem;margin-top:2rem}.st-doctor-controls button{display:grid;place-items:center;width:44px;height:44px;border:1px solid #9eafa4;border-radius:50%;background:transparent;color:var(--st-green);cursor:pointer}.st-doctor-controls span{font-size:.7rem;font-weight:800;letter-spacing:.12em}.st-doctor-card{position:relative;min-height:720px;overflow:hidden}.st-doctor-card>img{object-fit:cover;object-position:center top}.st-doctor-card>div{position:absolute;right:2rem;bottom:2rem;left:2rem;padding:1.5rem 1.8rem;border:1px solid rgba(255,255,255,.35);border-radius:18px;background:rgba(35,56,47,.78);color:#fff;backdrop-filter:blur(10px)}.st-doctor-card p{margin:0 0 .35rem;color:#d9c8bd;font-size:.66rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.st-doctor-card h3{margin:0;font-size:2rem}.st-contact{display:grid;grid-template-columns:1fr 1fr;gap:6vw;padding:7rem 8vw;background:#faf9f5}.st-contact address{display:grid;align-content:center;gap:1rem;font-style:normal}.st-contact address a{display:flex;align-items:flex-start;gap:1rem;padding:1.35rem;border:1px solid #e0e4df;border-radius:15px;background:#fff;color:var(--st-ink);text-decoration:none}.st-contact address>a>i{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#e7ede7;color:var(--st-green)}.st-contact address span{display:grid;gap:.25rem;color:#68746e;font-size:.83rem;line-height:1.45}.st-contact address b{color:#324b40;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase}.st-footer{display:flex;align-items:center;flex-direction:column;padding:3.5rem 5vw;background:#24382f;color:#dce4df;text-align:center}.st-footer img{object-fit:contain;filter:brightness(0) invert(1)}.st-footer>p{margin:.2rem 0 1.5rem;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;letter-spacing:.08em}.st-footer>div{display:flex;gap:1.5rem}.st-footer a{color:#dce4df;font-size:.66rem;font-weight:750;letter-spacing:.1em;text-decoration:none;text-transform:uppercase}.st-footer small{margin-top:2rem;color:#96a79f;font-size:.65rem}
+@media(max-width:900px){.st-nav{height:72px;padding:0 1rem}.st-logo{width:128px;height:64px}.st-menu{display:block}.st-links{position:absolute;top:72px;right:0;left:0;display:none;align-items:stretch;flex-direction:column;gap:0;padding:1rem;background:#fbfaf7;box-shadow:0 15px 30px rgba(35,56,47,.12)}.st-links.is-open{display:flex}.st-links>a,.st-links button{padding:.85rem;text-align:center}.st-hero{min-height:650px;padding-top:72px}.st-hero-copy{left:7vw;width:86vw}.st-hero-wash{background:linear-gradient(90deg,rgba(246,241,233,.96),rgba(246,241,233,.72) 65%,rgba(246,241,233,.2))}.st-intro,.st-doctors,.st-contact{grid-template-columns:1fr}.st-intro-image{min-height:480px}.st-intro-copy,.st-doctor-copy{padding:5rem 7vw}.st-service-grid{grid-template-columns:1fr 1fr}.st-service-grid article,.st-service-grid article:nth-child(4){grid-column:auto}.st-booking-paths>div{grid-template-columns:1fr}.st-doctor-card{min-height:620px}.st-contact{padding:5rem 7vw}}
+@media(max-width:600px){.st-hero{min-height:690px}.st-hero h1{font-size:3.8rem;line-height:.86}.st-hero-copy{top:48%}.st-hero-copy>div{align-items:flex-start;flex-direction:column}.st-intro-image{min-height:360px}.st-intro-copy,.st-services,.st-booking-paths,.st-doctor-copy,.st-contact{padding:4rem 1.2rem}.st-intro-copy h2,.st-services h2,.st-doctor-copy h2,.st-contact h2{font-size:2.9rem}.st-service-grid{grid-template-columns:1fr}.st-service-image{height:260px}.st-doctor-card{min-height:540px}.st-doctor-card>div{right:1rem;bottom:1rem;left:1rem}.st-doctor-card h3{font-size:1.55rem}.st-footer>div{flex-wrap:wrap;justify-content:center}}
+
+/* Skinthera salmon-and-white brand refinement */
+.skinthera-site{--st-ink:#513738;--st-green:#f39193;--st-sage:#f8c7c8;--st-cream:#fff7f5;--st-blush:#fdebec}.skinthera-site em,.skinthera-site .st-kicker,.skinthera-site .st-secondary,.skinthera-site .st-intro-copy>button{color:#d96f73}.skinthera-site .st-kicker span{background:#f39193}.skinthera-site .st-nav{background:rgba(255,255,255,.94);border-color:#f7d4d5}.skinthera-site .st-links>a{color:#684849}.skinthera-site .st-book,.skinthera-site .st-primary{background:#f39193;box-shadow:0 10px 28px rgba(243,145,147,.25)}.skinthera-site .st-hero-wash{background:linear-gradient(90deg,rgba(255,250,248,.98),rgba(255,250,248,.8) 40%,rgba(255,250,248,.08) 72%)}.skinthera-site .st-hero-arrows{position:absolute;z-index:4;right:5vw;bottom:3.9rem;display:flex;gap:.45rem}.skinthera-site .st-hero-arrows button{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:rgba(255,255,255,.84);color:#d96f73;cursor:pointer}.skinthera-site .st-hero-dots button{background:rgba(243,145,147,.35)}.skinthera-site .st-hero-dots button.active{background:#f39193}.skinthera-site .st-intro-copy,.skinthera-site .st-doctor-copy{background:#fff7f5}.skinthera-site .st-values i{background:#fde4e4;color:#d96f73}
+.skinthera-site .st-service-grid{grid-template-columns:repeat(6,1fr);gap:1.1rem}.skinthera-site .st-service-grid article{position:relative;grid-column:span 2;min-height:310px;padding:2rem;overflow:hidden;border:1px solid #f6d7d8;border-radius:26px;background:linear-gradient(145deg,#fff,#fff7f6);box-shadow:0 18px 50px rgba(145,79,81,.08)}.skinthera-site .st-service-grid article:nth-child(4){grid-column:2/span 2}.skinthera-site .st-service-grid article>div:last-child{padding:1.4rem 0 0}.skinthera-site .st-service-number{position:absolute;right:1.4rem;top:1rem;color:#f6d9da;font:500 3.8rem 'Cormorant Garamond',serif}.skinthera-site .st-service-icon{position:static;width:70px;height:70px;border:0;background:#f39193;box-shadow:0 10px 25px rgba(243,145,147,.25)}.skinthera-site .st-service-grid h3{color:#53383a}.skinthera-site .st-service-grid p{min-height:70px}.skinthera-site .st-service-grid button{color:#d96f73}.skinthera-site .st-booking-paths{background:linear-gradient(135deg,#f39193,#df777b)}.skinthera-site .st-booking-paths .st-kicker{color:#fff}.skinthera-site .st-doctors{background:#fff}.skinthera-site .st-doctor-card{background:#fff7f5}.skinthera-site .st-doctor-card>img{object-fit:cover}.skinthera-site .st-doctor-card.is-clench>img{object-position:center 38%}.skinthera-site .st-doctor-card.is-angelo>img{object-position:center 25%}.skinthera-site .st-doctor-card>div{background:rgba(226,116,120,.9);border-color:rgba(255,255,255,.7)}.skinthera-site .st-doctor-controls button{border-color:#f1babc;color:#dc777a}.skinthera-site .st-faq{display:grid;grid-template-columns:.78fr 1.22fr;gap:6vw;padding:7rem 8vw;background:#fff7f5}.skinthera-site .st-faq h2{margin:.2rem 0 2rem;font-size:clamp(2.8rem,4.5vw,5rem);line-height:.95}.skinthera-site .st-faq header>button{padding:.85rem 0;border:0;border-bottom:1px solid #f39193;background:transparent;color:#cf686c;font-weight:800;cursor:pointer}.skinthera-site .st-faq details{border-top:1px solid #f0d6d6}.skinthera-site .st-faq details:last-child{border-bottom:1px solid #f0d6d6}.skinthera-site .st-faq summary{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:1rem;padding:1.35rem 0;color:#5b4041;font-weight:800;cursor:pointer;list-style:none}.skinthera-site .st-faq summary span{color:#e4878a;font-size:.7rem}.skinthera-site .st-faq details p{margin:0;padding:0 2rem 1.4rem 3.4rem;color:#806a6b;line-height:1.7}.skinthera-site .st-location{display:grid;grid-template-columns:.75fr 1.25fr;min-height:520px;background:#fff}.skinthera-site .st-location>div{display:flex;justify-content:center;align-items:flex-start;flex-direction:column;padding:5vw}.skinthera-site .st-location h2{margin:.3rem 0 1rem;font:500 clamp(2.4rem,4vw,4.5rem)/.95 'Cormorant Garamond',serif}.skinthera-site .st-location p:not(.st-kicker){color:#796566;line-height:1.7}.skinthera-site .st-location a{color:#d76e72;font-weight:800;text-decoration:none}.skinthera-site .st-location iframe{width:100%;height:100%;min-height:520px;border:0}.skinthera-site .st-contact address>div{display:flex;align-items:flex-start;gap:1rem;padding:1.35rem;border:1px solid #f2d9da;border-radius:15px;background:#fff}.skinthera-site .st-contact address>div>i{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#fde6e7;color:#dc777a}.skinthera-site .st-footer{background:#f39193;color:#fff}.skinthera-site .st-footer a,.skinthera-site .st-footer small{color:#fff}.skinthera-site .st-footer img{filter:brightness(0) invert(1)}
+.bk-modal-overlay{--rose:#f39193;--rose-dark:#d96f73;--blush:#f8b7b9;--blush-light:#fff0ef}.bk-modal-topbar,.bk-standalone-header{border-color:#f6d5d6!important;background:#fff!important}.bk-modal-doctor,.bk-standalone-sub{color:#d96f73!important}
+.bk-modal-sheet .bk-step-bubble.active,.bk-modal-sheet .bk-btn-primary,.bk-modal-sheet .bk-cart-checkout,.bk-modal-sheet .bk-booking-mode button.selected>span:first-child{background:#f39193!important;border-color:#f39193!important}.bk-modal-sheet .bk-panel-icon,.bk-modal-sheet .bk-label,.bk-modal-sheet .bk-modal-close-btn,.bk-modal-sheet .bk-booking-mode button.selected strong{color:#d96f73!important}.bk-modal-sheet .bk-booking-mode button.selected,.bk-modal-sheet .bk-catalog-card.selected{border-color:#f39193!important;box-shadow:0 0 0 2px rgba(243,145,147,.12)!important}.bk-modal-sheet .bk-steps-bar{background:#fffafa!important}.bk-modal-sheet .bk-modal-logo{object-fit:contain}
+@media(max-width:900px){.skinthera-site .st-service-grid{grid-template-columns:1fr 1fr}.skinthera-site .st-service-grid article,.skinthera-site .st-service-grid article:nth-child(4){grid-column:auto}.skinthera-site .st-faq,.skinthera-site .st-location{grid-template-columns:1fr}.skinthera-site .st-location>div{padding:4rem 7vw}}
+@media(max-width:600px){.skinthera-site .st-service-grid{grid-template-columns:1fr}.skinthera-site .st-faq{padding:4rem 1.2rem}.skinthera-site .st-hero-arrows{right:1.2rem}.skinthera-site .st-doctor-card.is-clench>img{object-position:center 35%}}
+
+/* Skinthera landing refinements: centered navigation, doctor showcase, map and footer */
+.skinthera-site .st-nav{display:grid;grid-template-columns:170px minmax(0,1fr) auto;gap:1.5rem}
+.skinthera-site .st-nav-panel{display:contents}
+.skinthera-site .st-nav-center,.skinthera-site .st-nav-actions{display:flex;align-items:center}
+.skinthera-site .st-nav-center{justify-content:center;gap:clamp(1rem,2.2vw,2.2rem)}
+.skinthera-site .st-nav-actions{justify-content:flex-end;gap:.65rem}
+.skinthera-site .st-nav-center>a,.skinthera-site .st-nav-more>summary,.skinthera-site .st-nav-actions>a{color:#684849;font-size:.7rem;font-weight:750;letter-spacing:.09em;text-decoration:none;text-transform:uppercase;white-space:nowrap}
+.skinthera-site .st-nav-center>a:hover,.skinthera-site .st-nav-more>summary:hover{color:#d96f73}
+.skinthera-site .st-nav-actions .st-signin{padding:.68rem 1rem;border:1px solid #f0c4c5;border-radius:999px}
+.skinthera-site .st-nav-more{position:relative}
+.skinthera-site .st-nav-more>summary{display:flex;align-items:center;gap:.38rem;cursor:pointer;list-style:none}
+.skinthera-site .st-nav-more>summary::-webkit-details-marker{display:none}
+.skinthera-site .st-nav-more>summary i{font-size:.52rem;transition:transform .2s}
+.skinthera-site .st-nav-more[open]>summary i{transform:rotate(180deg)}
+.skinthera-site .st-nav-more>div{position:absolute;top:calc(100% + 1rem);left:50%;display:grid;min-width:150px;padding:.55rem;border:1px solid #f4dada;border-radius:14px;background:#fff;box-shadow:0 18px 45px rgba(104,72,73,.13);transform:translateX(-50%)}
+.skinthera-site .st-nav-more>div a{padding:.7rem .8rem;border-radius:9px;color:#684849;font-size:.68rem;font-weight:750;text-decoration:none;text-transform:uppercase}
+.skinthera-site .st-nav-more>div a:hover{background:#fff3f2;color:#d96f73}
+
+.skinthera-site .st-doctors{grid-template-columns:minmax(390px,.82fr) minmax(520px,1.18fr);gap:clamp(2rem,5vw,6rem);min-height:760px;padding:clamp(3rem,6vw,6rem);background:#f39193}
+.skinthera-site .st-doctor-copy{padding:0;background:transparent;color:#fff}
+.skinthera-site .st-doctor-copy .st-kicker,.skinthera-site .st-doctor-copy h2,.skinthera-site .st-doctor-copy h2 em{color:#fff}
+.skinthera-site .st-doctor-copy .st-kicker{margin-bottom:1.4rem}
+.skinthera-site .st-doctor-copy .st-kicker:before{content:"";width:34px;height:1px;background:rgba(255,255,255,.75)}
+.skinthera-site .st-doctor-copy>p:not(.st-kicker){color:rgba(255,255,255,.88);font-size:1rem}
+.skinthera-site .st-doctor-focus{display:flex;align-items:center;gap:.85rem;margin-top:1.7rem;padding:1rem 1.1rem;border:1px solid rgba(255,255,255,.36);border-radius:16px;background:rgba(255,255,255,.11)}
+.skinthera-site .st-doctor-focus>i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fff;color:#e17b7e}
+.skinthera-site .st-doctor-focus span{display:grid;gap:.15rem;font-size:.8rem;font-weight:700}
+.skinthera-site .st-doctor-focus small{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;opacity:.75}
+.skinthera-site .st-doctor-controls button{border-color:rgba(255,255,255,.65);color:#fff}
+.skinthera-site .st-doctor-controls button:hover{background:#fff;color:#e17b7e}
+.skinthera-site .st-doctor-controls span{color:#fff}
+.skinthera-site .st-doctor-card{min-height:640px;border:8px solid rgba(255,255,255,.55);border-radius:32px;background:#fff;box-shadow:0 28px 70px rgba(114,45,47,.2)}
+.skinthera-site .st-doctor-card.is-clench>img{object-position:center 32%}
+.skinthera-site .st-doctor-card.is-angelo>img{object-position:center 22%}
+.skinthera-site .st-doctor-label{position:absolute;z-index:2;top:1.3rem;right:1.3rem;padding:.6rem .9rem;border-radius:999px;background:rgba(255,255,255,.9);color:#b65c60;font-size:.58rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.skinthera-site .st-doctor-card>div{right:1.4rem;bottom:1.4rem;left:1.4rem;padding:1.45rem 1.55rem;border-radius:20px;background:rgba(255,255,255,.94);color:#513738;box-shadow:0 12px 40px rgba(90,48,49,.14)}
+.skinthera-site .st-doctor-card p{color:#d16b6f}
+.skinthera-site .st-doctor-card h3{padding-right:170px;color:#513738;font-size:clamp(1.5rem,2.4vw,2.35rem)}
+.skinthera-site .st-doctor-card>div button{position:absolute;right:1.4rem;bottom:1.45rem;padding:.7rem .85rem;border:0;border-radius:999px;background:#f39193;color:#fff;font-size:.63rem;font-weight:800;cursor:pointer}
+
+.skinthera-site .st-location{display:block;min-height:0;background:#fffafa}
+.skinthera-site .st-location .st-location-head{display:flex;align-items:center;justify-content:space-between;gap:3rem;padding:2.4rem 5vw}
+.skinthera-site .st-location-head>div{display:block;padding:0}
+.skinthera-site .st-location .st-kicker{margin:0 0 .45rem}
+.skinthera-site .st-location h2{margin:0 0 .4rem;font-size:clamp(1.7rem,2.4vw,2.5rem);line-height:1.05}
+.skinthera-site .st-location p:not(.st-kicker){margin:0;color:#8b7475;font-size:.82rem}
+.skinthera-site .st-location .st-location-head>a{flex:none;padding:1rem 1.35rem;border-radius:999px;background:#f39193;color:#fff;box-shadow:0 10px 24px rgba(243,145,147,.25)}
+.skinthera-site .st-location .st-location-head>a i{margin-left:.55rem}
+.skinthera-site .st-location iframe{display:block;width:100%;height:530px;min-height:0;border:0;border-top:1px solid #f2d7d7}
+
+.skinthera-site .st-footer{display:block;padding:3.5rem 5vw 1.3rem;background:linear-gradient(120deg,#fff1ef,#f9d8d7);color:#775556;text-align:left}
+.skinthera-site .st-footer-main{display:grid;grid-template-columns:minmax(210px,.8fr) minmax(360px,1.3fr) minmax(280px,1fr);align-items:center;gap:3rem;padding-bottom:2.6rem}
+.skinthera-site .st-footer-brand{display:block;padding-right:2rem;border-right:1px solid rgba(190,110,113,.25)}
+.skinthera-site .st-footer-brand img{width:min(235px,100%);height:auto;filter:none;object-fit:contain}
+.skinthera-site .st-footer-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:1.2rem 1.8rem;padding-right:2rem;border-right:1px solid rgba(190,110,113,.25)}
+.skinthera-site .st-footer a{color:#a85d60}
+.skinthera-site .st-footer-community{display:grid;gap:.8rem}
+.skinthera-site .st-footer-community p{margin:0;color:#775556;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
+.skinthera-site .st-footer-community>a{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.85rem 1rem;border:1px solid rgba(211,128,131,.35);border-radius:999px;background:rgba(255,255,255,.62);font-size:.68rem;text-decoration:none}
+.skinthera-site .st-footer-community strong{color:#bd6b6e;font:italic 500 clamp(1.25rem,2vw,1.9rem) 'Cormorant Garamond',serif}
+.skinthera-site .st-footer-contact{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem 2rem;padding:1.1rem;border-top:1px solid rgba(190,110,113,.2);border-bottom:1px solid rgba(190,110,113,.2);font-size:.67rem}
+.skinthera-site .st-footer-contact a,.skinthera-site .st-footer-contact span{color:#866667;text-decoration:none}
+.skinthera-site .st-footer-contact i{margin-right:.38rem;color:#cf7376}
+.skinthera-site .st-footer-bottom{text-align:center}
+.skinthera-site .st-footer-bottom small{display:block;margin-top:1.25rem;color:#a17c7d}
+
+@media(max-width:1050px){
+ .skinthera-site .st-nav{grid-template-columns:145px minmax(0,1fr) auto;gap:.8rem;padding-inline:2vw}
+ .skinthera-site .st-nav-center{gap:1rem}
+ .skinthera-site .st-doctors{grid-template-columns:.85fr 1.15fr;padding:4rem 3vw}
+ .skinthera-site .st-footer-main{grid-template-columns:190px 1fr}.skinthera-site .st-footer-community{grid-column:1/-1;text-align:center}.skinthera-site .st-footer-community>a{max-width:420px;margin:auto;width:100%}
+}
+@media(max-width:900px){
+ .skinthera-site .st-nav{grid-template-columns:1fr auto;padding-inline:1rem}.skinthera-site .st-menu{display:block}.skinthera-site .st-nav-panel{position:absolute;top:72px;right:0;left:0;display:none;padding:1rem;background:#fff;box-shadow:0 18px 35px rgba(104,72,73,.14)}.skinthera-site .st-nav-panel.is-open{display:grid}.skinthera-site .st-nav-center,.skinthera-site .st-nav-actions{align-items:stretch;flex-direction:column;gap:0}.skinthera-site .st-nav-center>a,.skinthera-site .st-nav-more>summary,.skinthera-site .st-nav-actions>a,.skinthera-site .st-nav-actions button{justify-content:center;padding:.8rem;text-align:center}.skinthera-site .st-nav-more>div{position:static;margin:.25rem 0;box-shadow:none;transform:none}.skinthera-site .st-nav-actions{border-top:1px solid #f5dddd;padding-top:.5rem}.skinthera-site .st-nav-actions .st-signin{border:0}
+ .skinthera-site .st-doctors{grid-template-columns:1fr;gap:2.5rem;padding:4rem 7vw}.skinthera-site .st-doctor-card{min-height:650px}
+ .skinthera-site .st-footer-main{grid-template-columns:1fr;text-align:center}.skinthera-site .st-footer-brand,.skinthera-site .st-footer-nav{padding:0;border:0}.skinthera-site .st-footer-brand img{margin:auto}.skinthera-site .st-footer-nav{max-width:600px;margin:auto}
+}
+@media(max-width:600px){
+ .skinthera-site .st-doctors{padding:4rem 1.2rem}.skinthera-site .st-doctor-card{min-height:540px;border-width:5px}.skinthera-site .st-doctor-card>div{right:.8rem;bottom:.8rem;left:.8rem}.skinthera-site .st-doctor-card h3{padding-right:0}.skinthera-site .st-doctor-card>div button{position:static;margin-top:.8rem}.skinthera-site .st-doctor-card.is-clench>img{object-position:center 28%}
+ .skinthera-site .st-location .st-location-head{align-items:flex-start;flex-direction:column;gap:1.3rem;padding:2.4rem 1.2rem}.skinthera-site .st-location iframe{height:440px}
+ .skinthera-site .st-footer{padding:3rem 1.2rem 1.2rem}.skinthera-site .st-footer-main{gap:2rem}.skinthera-site .st-footer-nav{gap:1rem 1.3rem}.skinthera-site .st-footer-contact{align-items:flex-start;flex-direction:column}.skinthera-site .st-footer-community strong{font-size:1.4rem}
+}
+
+/* Expanded Skinthera content sections */
+.skinthera-site .st-service-grid{display:none}
+.skinthera-site .st-service-explorer{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(560px,1.28fr);gap:1.25rem;max-width:1400px;margin:auto}
+.skinthera-site .st-service-tabs{display:grid;align-content:start;gap:.65rem}
+.skinthera-site .st-service-tabs>button{display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:.3rem 1rem;width:100%;padding:1rem;border:1px solid #f3d8d8;border-radius:18px;background:#fff;color:#654849;text-align:left;cursor:pointer;transition:.22s}
+.skinthera-site .st-service-tabs>button:hover,.skinthera-site .st-service-tabs>button.active{border-color:#f39193;background:#fff2f1;box-shadow:0 12px 30px rgba(157,78,81,.09);transform:translateX(5px)}
+.skinthera-site .st-service-tabs>button>span{grid-row:1/3;display:grid;place-items:center;width:54px;height:54px;border-radius:15px;background:#fde4e4;color:#d96f73}
+.skinthera-site .st-service-tabs>button.active>span{background:#f39193;color:#fff}
+.skinthera-site .st-service-tabs b{font:600 1.35rem 'Cormorant Garamond',serif}
+.skinthera-site .st-service-tabs small{grid-column:2;color:#8c7576;font-size:.67rem;line-height:1.35}
+.skinthera-site .st-service-tabs>button>i{grid-column:3;grid-row:1/3;color:#e27c80}
+.skinthera-site .st-service-panel{padding:2rem;border:1px solid #f1d5d6;border-radius:26px;background:linear-gradient(145deg,#fff,#fff8f7);box-shadow:0 20px 55px rgba(115,61,63,.08)}
+.skinthera-site .st-service-panel>header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding-bottom:1.4rem;border-bottom:1px solid #f1dcdc}
+.skinthera-site .st-service-panel>header>span{color:#f4cbcc;font:500 3.5rem 'Cormorant Garamond',serif}
+.skinthera-site .st-service-panel>header p{margin:0;color:#d47376;font-size:.58rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.skinthera-site .st-service-panel h3{margin:.1rem 0 0;font-size:2.1rem}
+.skinthera-site .st-service-panel>header button,.skinthera-site .st-results header>button{padding:.85rem 1rem;border:0;border-radius:999px;background:#f39193;color:#fff;font-size:.68rem;font-weight:800;cursor:pointer}
+.skinthera-site .st-treatment-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
+.skinthera-site .st-treatment-groups article{padding:1.15rem;border:1px solid #f3dddd;border-radius:16px;background:#fff}
+.skinthera-site .st-treatment-groups h4{margin:0 0 .8rem;color:#604143;font:600 1.15rem 'Cormorant Garamond',serif}
+.skinthera-site .st-treatment-groups ul{display:grid;gap:.5rem;margin:0;padding:0;list-style:none}
+.skinthera-site .st-treatment-groups li{display:flex;align-items:flex-start;gap:.5rem;color:#806a6b;font-size:.7rem;line-height:1.35}
+.skinthera-site .st-treatment-groups li i{margin-top:.18rem;color:#ed9295;font-size:.5rem}
+.skinthera-site .st-service-note{margin:1.25rem 0 0;padding:.9rem 1rem;border-radius:12px;background:#fff0ef;color:#8a6d6e;font-size:.66rem}
+
+.skinthera-site .st-doctors{display:block;min-height:0;padding:6rem 7vw;background:#fff3f1;color:#493536}
+.skinthera-site .st-doctors>header{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:3rem;max-width:1300px;margin:0 auto 2.5rem}
+.skinthera-site .st-doctors>header .st-kicker{grid-column:1/-1;margin:0;color:#d66d71}
+.skinthera-site .st-doctors>header .st-kicker:before{content:"";width:34px;height:1px;background:#f39193}
+.skinthera-site .st-doctors>header h2{margin:0;color:#493536;font-size:clamp(3rem,5.4vw,5.7rem);line-height:.85}
+.skinthera-site .st-doctors>header h2 em{color:#e37e81}
+.skinthera-site .st-doctors>header>p{margin:0 0 .4rem;color:#6f595a;font-size:1rem;line-height:1.75}
+.skinthera-site .st-doctor-stage{display:grid;grid-template-columns:1.12fr .88fr;min-height:610px;max-width:1300px;margin:auto;overflow:hidden;border:1px solid #f0d6d6;border-radius:30px;background:#fff;box-shadow:0 25px 70px rgba(113,62,64,.1)}
+.skinthera-site .st-doctor-portrait{position:relative;min-height:610px;overflow:hidden;background:#fafafa}
+.skinthera-site .st-doctor-portrait img{object-fit:cover}
+.skinthera-site .st-doctor-portrait.is-clench img{object-position:center 32%}
+.skinthera-site .st-doctor-portrait.is-angelo img{object-position:center 20%}
+.skinthera-site .st-doctor-profile{display:flex;justify-content:center;align-items:flex-start;flex-direction:column;padding:clamp(2rem,4vw,4.5rem);color:#302526}
+.skinthera-site .st-doctor-profile>span{padding:.4rem .65rem;border:1px solid #f0c9ca;border-radius:999px;color:#d56d71;font-size:.58rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+.skinthera-site .st-doctor-profile>p:not(.st-doctor-bio){margin:1.4rem 0 .45rem;color:#d66f73;font-size:.64rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+.skinthera-site .st-doctor-profile h3{margin:0;color:#332627;font-size:clamp(2.2rem,4vw,4rem);line-height:.9}
+.skinthera-site .st-doctor-profile .st-doctor-bio{margin:1.5rem 0 0;color:#604f50;font-size:.9rem;line-height:1.7}
+.skinthera-site .st-doctor-profile .st-doctor-focus{width:100%;margin-top:1.4rem;border-color:#f0d3d3;background:#fff8f7;color:#4a3839}
+.skinthera-site .st-doctor-book{margin-top:1.5rem;padding:.9rem 1.15rem;border:0;border-radius:999px;background:#f39193;color:#fff;font-weight:800;cursor:pointer}
+.skinthera-site .st-doctors>.st-doctor-controls{justify-content:center;margin:1.6rem 0 0}
+.skinthera-site .st-doctors>.st-doctor-controls>button{border-color:#e8a9ab;color:#d96f73}
+.skinthera-site .st-doctors>.st-doctor-controls>span{display:flex;gap:.45rem}
+.skinthera-site .st-doctors>.st-doctor-controls>span button{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#efc6c7;cursor:pointer;transition:.2s}
+.skinthera-site .st-doctors>.st-doctor-controls>span button.active{width:28px;background:#f39193}
+
+.skinthera-site .st-results{padding:6rem 5vw;background:#f8eeee}
+.skinthera-site .st-results>header{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;max-width:1400px;margin:0 auto 2.5rem}
+.skinthera-site .st-results h2,.skinthera-site .st-social h2{margin:.2rem 0 .8rem;font-size:clamp(3rem,5vw,5.5rem);line-height:.92}
+.skinthera-site .st-results header>div>p:last-child{max-width:690px;color:#7e696a;line-height:1.65}
+.skinthera-site .st-results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1400px;margin:auto}
+.skinthera-site .st-results-grid article{position:relative;min-height:350px;padding:1.6rem;overflow:hidden;border:1px solid #ead4d5;background:#fff}
+.skinthera-site .st-results-grid article>span{position:absolute;top:1.2rem;right:1.2rem;padding:.4rem .55rem;border:1px solid #ecd5d6;color:#a88485;font-size:.56rem;text-transform:uppercase}
+.skinthera-site .st-results-grid article>i{display:grid;place-items:center;width:58px;height:58px;margin:2.5rem 0 2.4rem;border-radius:50%;background:#fde7e7;color:#dd777b}
+.skinthera-site .st-results-grid article>p{margin:0;color:#d17376;font-size:.6rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+.skinthera-site .st-results-grid h3{margin:.35rem 0;font-size:2rem}.skinthera-site .st-results-grid small{color:#806b6c}
+.skinthera-site .st-results-grid article>div{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:2rem}.skinthera-site .st-results-grid article>div b{padding:.7rem;border:1px solid #f0d7d8;border-radius:999px;color:#9b7778;font-size:.6rem;text-align:center;text-transform:uppercase}
+.skinthera-site .st-results-grid article>em{display:block;margin-top:.8rem;color:#bc9697;font:italic .8rem 'Cormorant Garamond',serif;text-align:center}
+
+.skinthera-site .st-social{display:grid;grid-template-columns:.65fr 1.35fr;gap:4vw;padding:6rem 5vw;background:#fffafa}
+.skinthera-site .st-social-intro{display:flex;justify-content:center;align-items:flex-start;flex-direction:column}
+.skinthera-site .st-social-intro>p:not(.st-kicker){color:#806b6c;line-height:1.7}.skinthera-site .st-social-intro>a{margin-top:1.2rem;padding:.9rem 1.15rem;border-radius:999px;background:#f39193;color:#fff;font-size:.7rem;font-weight:800;text-decoration:none}
+.skinthera-site .st-social-feed{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.skinthera-site .st-social-feed>a{padding:0 0 1.2rem;overflow:hidden;border:1px solid #eed9d9;border-radius:20px;background:#fff;color:#584142;text-decoration:none}
+.skinthera-site .st-social-feed>a>div{position:relative;height:320px;overflow:hidden;background:#f5e5e5}.skinthera-site .st-social-feed img{object-fit:cover;object-position:top;transition:transform .4s}.skinthera-site .st-social-feed>a:hover img{transform:scale(1.025)}
+.skinthera-site .st-social-feed span,.skinthera-site .st-social-feed h3,.skinthera-site .st-social-feed p{display:block;margin-right:1rem;margin-left:1rem}.skinthera-site .st-social-feed span{margin-top:1rem;color:#d47074;font-size:.58rem;font-weight:800;text-transform:uppercase}.skinthera-site .st-social-feed h3{margin-top:.35rem;margin-bottom:.25rem;font-size:1.45rem}.skinthera-site .st-social-feed p{margin-top:0;margin-bottom:0;color:#867071;font-size:.7rem;line-height:1.45}
+
+.skinthera-site .st-location .st-location-head{justify-content:flex-start;text-align:left}.skinthera-site .st-location .st-location-head>div{flex:1}.skinthera-site .st-location .st-location-head>a{margin-left:auto}
+.skinthera-site .st-contact{grid-template-columns:.82fr 1.18fr;gap:4vw;padding:6rem 5vw;background:#fffafa}
+.skinthera-site .st-contact-info>p:not(.st-kicker){max-width:590px;color:#816b6c;line-height:1.7}
+.skinthera-site .st-contact-info address{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:1.8rem}
+.skinthera-site .st-contact-info address>a,.skinthera-site .st-contact-info address>div{min-height:94px;padding:1rem;border:1px solid #efd8d9;border-radius:14px;background:#fff}
+.skinthera-site .st-contact-info address span{display:grid;gap:.15rem;color:#5d4748}.skinthera-site .st-contact-info address small{color:#a58788;font-size:.56rem}.skinthera-site .st-contact-info address b{color:#584243;font-size:.65rem;letter-spacing:0;text-transform:none}
+.skinthera-site .st-inquiry{padding:1.7rem;border:1px solid #ecd4d5;border-radius:24px;background:#fff;box-shadow:0 20px 55px rgba(105,61,63,.07)}
+.skinthera-site .st-inquiry>header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:1rem;border-bottom:1px solid #efdddd}.skinthera-site .st-inquiry h3{margin:0;font:800 1.15rem 'Jost',sans-serif}.skinthera-site .st-inquiry header span{color:#a38283;font-size:.6rem}
+.skinthera-site .st-inquiry>div{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.2rem}.skinthera-site .st-inquiry label{display:grid;gap:.4rem;color:#664e4f;font-size:.62rem;font-weight:800}.skinthera-site .st-inquiry label.wide{grid-column:1/-1}.skinthera-site .st-inquiry input,.skinthera-site .st-inquiry select,.skinthera-site .st-inquiry textarea{width:100%;padding:.9rem;border:1px solid #e7cecf;border-radius:11px;outline:none;background:#fffdfd;color:#584243;font:500 .72rem 'Jost',sans-serif}.skinthera-site .st-inquiry textarea{min-height:150px;resize:vertical}.skinthera-site .st-inquiry input:focus,.skinthera-site .st-inquiry select:focus,.skinthera-site .st-inquiry textarea:focus{border-color:#f39193;box-shadow:0 0 0 3px rgba(243,145,147,.12)}.skinthera-site .st-inquiry>button{width:100%;margin-top:1rem;padding:1rem;border:0;border-radius:11px;background:#f39193;color:#fff;font-weight:850;cursor:pointer}
+
+@media(max-width:1000px){.skinthera-site .st-service-explorer,.skinthera-site .st-social{grid-template-columns:1fr}.skinthera-site .st-service-tabs{grid-template-columns:repeat(2,1fr)}.skinthera-site .st-doctor-stage{grid-template-columns:1fr 1fr}.skinthera-site .st-social-intro{max-width:650px}.skinthera-site .st-contact{grid-template-columns:1fr}}
+@media(max-width:700px){.skinthera-site .st-service-explorer{display:block}.skinthera-site .st-service-tabs{display:flex;margin-bottom:1rem;overflow-x:auto;scroll-snap-type:x mandatory}.skinthera-site .st-service-tabs>button{min-width:260px;scroll-snap-align:start}.skinthera-site .st-service-tabs>button:hover,.skinthera-site .st-service-tabs>button.active{transform:none}.skinthera-site .st-service-panel{padding:1.2rem}.skinthera-site .st-service-panel>header{grid-template-columns:auto 1fr}.skinthera-site .st-service-panel>header button{grid-column:1/-1}.skinthera-site .st-treatment-groups{grid-template-columns:1fr}.skinthera-site .st-doctors{padding:4rem 1.2rem}.skinthera-site .st-doctors>header{grid-template-columns:1fr;gap:1rem}.skinthera-site .st-doctor-stage{grid-template-columns:1fr}.skinthera-site .st-doctor-portrait{min-height:500px}.skinthera-site .st-doctor-profile{padding:2rem 1.4rem}.skinthera-site .st-results{padding:4rem 1.2rem}.skinthera-site .st-results>header{align-items:flex-start;flex-direction:column}.skinthera-site .st-results-grid{grid-template-columns:1fr}.skinthera-site .st-social{padding:4rem 1.2rem}.skinthera-site .st-social-feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.skinthera-site .st-social-feed>a{min-width:82vw;scroll-snap-align:start}.skinthera-site .st-contact{padding:4rem 1.2rem}.skinthera-site .st-contact-info address,.skinthera-site .st-inquiry>div{grid-template-columns:1fr}.skinthera-site .st-inquiry label.wide{grid-column:auto}.skinthera-site .st-inquiry>header{align-items:flex-start;flex-direction:column}.skinthera-site .st-location .st-location-head>a{margin-left:0}}
+
+/* Expandable service cards, results carousel, and CMS-driven social feed */
+.skinthera-site .st-service-explorer{display:none}
+.skinthera-site .st-service-accordions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:1rem;max-width:1400px;margin:auto}
+.skinthera-site .st-service-accordions>article{overflow:hidden;border:1px solid #f0d4d5;border-radius:22px;background:#fff;box-shadow:0 14px 38px rgba(112,61,63,.06)}
+.skinthera-site .st-service-accordions>article.is-open{border-color:#eeafb1}
+.skinthera-site .st-service-card{display:grid;grid-template-columns:68px 1fr auto;align-items:center;gap:1rem;width:100%;min-height:150px;padding:1.4rem;border:0;background:linear-gradient(145deg,#fff,#fff8f7);color:#52393a;text-align:left;cursor:pointer}
+.skinthera-site .st-service-card-icon{display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:#f39193;color:#fff;font-size:1.2rem;box-shadow:0 10px 25px rgba(243,145,147,.25)}
+.skinthera-site .st-service-card>span:nth-child(2){display:grid;gap:.25rem}.skinthera-site .st-service-card small{color:#dea2a4;font:500 1.25rem 'Cormorant Garamond',serif}.skinthera-site .st-service-card b{font:600 clamp(1.55rem,2.3vw,2.25rem) 'Cormorant Garamond',serif}.skinthera-site .st-service-card em{color:#806b6c;font:normal .72rem/1.45 'Jost',sans-serif}.skinthera-site .st-service-card>i{display:grid;place-items:center;width:42px;height:42px;border:1px solid #efc6c7;border-radius:50%;color:#d96f73;transition:transform .25s}.skinthera-site .st-service-accordions>article.is-open .st-service-card>i{transform:rotate(180deg);background:#f39193;color:#fff}
+.skinthera-site .st-service-drawer{padding:0 1.4rem 1.4rem;border-top:1px solid #f3dddd;background:#fffafa}.skinthera-site .st-service-drawer .st-treatment-groups{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.skinthera-site .st-service-drawer .st-treatment-groups section{padding:1.1rem;border:1px solid #f1dddd;border-radius:15px;background:#fff}.skinthera-site .st-service-drawer footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1px solid #f0dddd}.skinthera-site .st-service-drawer footer p{margin:0;color:#8b7273;font-size:.66rem}.skinthera-site .st-service-drawer footer button{flex:none;padding:.8rem 1rem;border:0;border-radius:999px;background:#f39193;color:#fff;font-size:.68rem;font-weight:800;cursor:pointer}
+
+.skinthera-site .st-results-slider{display:grid;grid-template-columns:auto minmax(0,980px) auto;align-items:center;justify-content:center;gap:1.2rem;max-width:1200px;margin:auto}.skinthera-site .st-results-slider>button{display:grid;place-items:center;width:48px;height:48px;border:1px solid #e6babc;border-radius:50%;background:#fff;color:#d96f73;cursor:pointer}.skinthera-site .st-results-slider>article{overflow:hidden;border:1px solid #e8ced0;border-radius:28px;background:#fff;box-shadow:0 24px 65px rgba(99,52,55,.11)}.skinthera-site .st-result-image{position:relative;height:min(68vw,680px);min-height:500px;background:#eadede}.skinthera-site .st-result-image img{object-fit:contain;background:#f7eeee}.skinthera-site .st-result-image>span{position:absolute;z-index:2;top:1.2rem;left:1.2rem;padding:.6rem .8rem;border-radius:999px;background:rgba(255,255,255,.9);color:#c96569;font-size:.6rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase}.skinthera-site .st-results-slider article>footer{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.2rem 1.5rem}.skinthera-site .st-results-slider footer small{color:#d27074;font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.skinthera-site .st-results-slider footer h3{margin:.2rem 0 0;font-size:1.7rem}.skinthera-site .st-results-slider footer p{max-width:380px;margin:0;color:#8b7475;font-size:.65rem;line-height:1.5}.skinthera-site .st-result-dots{display:flex;justify-content:center;gap:.45rem;margin-top:1.2rem}.skinthera-site .st-result-dots button{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#e9bfc1;cursor:pointer;transition:.2s}.skinthera-site .st-result-dots button.active{width:28px;background:#f39193}
+
+.skinthera-site .st-social-feed.is-empty{display:grid;place-items:center;min-height:360px;border:1px dashed #e3bfc1;border-radius:24px;background:rgba(255,255,255,.7)}.skinthera-site .st-social-empty{text-align:center}.skinthera-site .st-social-empty>i{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:#fde5e5;color:#d87377;font-size:1.35rem}.skinthera-site .st-social-empty h3{margin:0;color:#5a4243;font-size:1.6rem}.skinthera-site .st-social-empty p{margin:.45rem 0 0;color:#927a7b;font-size:.72rem}.skinthera-site .st-social-feed:not(.is-empty)>a{display:flex;justify-content:center;flex-direction:column;min-height:190px;padding:1.5rem}.skinthera-site .st-social-feed:not(.is-empty)>a span,.skinthera-site .st-social-feed:not(.is-empty)>a h3,.skinthera-site .st-social-feed:not(.is-empty)>a p{margin-right:0;margin-left:0}
+.skinthera-site .st-social-feed.is-empty{grid-template-columns:1fr}.skinthera-site .st-social-empty{justify-self:center;max-width:420px;padding:2rem}.skinthera-site .st-social-feed .st-social-empty h3,.skinthera-site .st-social-feed .st-social-empty p{margin-right:0;margin-left:0}
+.skinthera-site .st-location .st-location-head{align-items:flex-start;width:100%;text-align:left}.skinthera-site .st-location .st-location-head>a{align-self:flex-start;margin-left:0}
+
+/* Continuously moving before-and-after gallery */
+.skinthera-site .st-results-marquee{max-width:1500px;margin:auto;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.skinthera-site .st-results-track{display:flex;width:max-content;gap:1.2rem;animation:st-results-scroll 28s linear infinite;will-change:transform}
+.skinthera-site .st-results-marquee:hover .st-results-track{animation-play-state:paused}
+.skinthera-site .st-results-track article{width:clamp(340px,42vw,650px);flex:none;overflow:hidden;border:1px solid #e8ced0;border-radius:24px;background:#fff;box-shadow:0 18px 45px rgba(99,52,55,.09)}
+.skinthera-site .st-results-track .st-result-image{height:clamp(420px,46vw,650px);min-height:0}
+.skinthera-site .st-results-track article>footer{padding:1rem 1.25rem}.skinthera-site .st-results-track footer small{color:#d27074;font-size:.58rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.skinthera-site .st-results-track footer h3{margin:.2rem 0 0;font-size:1.55rem}
+.skinthera-site .st-results-note{max-width:1400px;margin:1.2rem auto 0;color:#8b7475;font-size:.65rem;text-align:center}
+@keyframes st-results-scroll{to{transform:translateX(calc(-50% - .6rem))}}
+@media(prefers-reduced-motion:reduce){.skinthera-site .st-results-track{animation:none}.skinthera-site .st-results-marquee{overflow-x:auto;mask-image:none}}
+
+/* Reveal each homepage section as it enters the viewport. */
+.skinthera-site>section.st-scroll-reveal{opacity:0;transform:translateY(54px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.skinthera-site>section.st-scroll-reveal.is-revealed{opacity:1;transform:none}
+.skinthera-site>section.st-scroll-reveal .st-service-accordions>article,.skinthera-site>section.st-scroll-reveal.st-booking-paths>div>button,.skinthera-site>section.st-scroll-reveal .st-social-feed>a{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.skinthera-site>section.st-scroll-reveal.is-revealed .st-service-accordions>article,.skinthera-site>section.st-scroll-reveal.st-booking-paths.is-revealed>div>button,.skinthera-site>section.st-scroll-reveal.is-revealed .st-social-feed>a{opacity:1;transform:none}
+.skinthera-site>section.st-scroll-reveal.is-revealed :is(.st-service-accordions>article,.st-social-feed>a):nth-child(2),.skinthera-site>section.st-scroll-reveal.st-booking-paths.is-revealed>div>button:nth-child(2){transition-delay:.1s}
+.skinthera-site>section.st-scroll-reveal.is-revealed :is(.st-service-accordions>article,.st-social-feed>a):nth-child(3),.skinthera-site>section.st-scroll-reveal.st-booking-paths.is-revealed>div>button:nth-child(3){transition-delay:.2s}
+.skinthera-site>section.st-scroll-reveal.is-revealed :is(.st-service-accordions>article,.st-social-feed>a):nth-child(4){transition-delay:.3s}
+.skinthera-site>section.st-scroll-reveal.is-revealed :is(.st-service-accordions>article,.st-social-feed>a):nth-child(5){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){.skinthera-site>section.st-scroll-reveal,.skinthera-site>section.st-scroll-reveal *{opacity:1!important;transform:none!important;transition:none!important}}
+@media(max-width:700px){.skinthera-site .st-service-accordions{grid-template-columns:1fr}.skinthera-site .st-service-accordions>article.is-open{grid-column:auto}.skinthera-site .st-service-card{grid-template-columns:55px 1fr auto;min-height:130px;padding:1rem}.skinthera-site .st-service-card-icon{width:55px;height:55px}.skinthera-site .st-service-drawer footer{align-items:flex-start;flex-direction:column}.skinthera-site .st-results-slider{grid-template-columns:1fr}.skinthera-site .st-results-slider>button{position:absolute;z-index:3}.skinthera-site .st-results-slider>button:first-child{left:1.7rem}.skinthera-site .st-results-slider>button:last-child{right:1.7rem}.skinthera-site .st-result-image{height:115vw;min-height:420px}.skinthera-site .st-results-slider article>footer{align-items:flex-start;flex-direction:column;gap:.6rem}.skinthera-site .st-social-feed.is-empty{display:grid;min-height:280px;overflow:visible}.skinthera-site .st-social-feed:not(.is-empty){display:grid;overflow:visible}.skinthera-site .st-social-feed:not(.is-empty)>a{min-width:0}}

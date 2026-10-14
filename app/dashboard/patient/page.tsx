@@ -158,7 +158,7 @@ export default function PatientDashboard() {
   const handleRescheduleAppointment = async (appointmentId: string, date: string, time: string, reason: string) => {
     await createRescheduleRequest(appointmentId, date, time, reason);
     setRescheduleRequests(await fetchRescheduleRequests());
-    setBookingNotice("Your reschedule request was sent to Dr. Kharyl. Your original schedule remains confirmed until it is approved.");
+    setBookingNotice("Your reschedule request was sent to the Skinthera medical team. Your original schedule remains confirmed until it is approved.");
   };
 
   const toggleSection = (s: NavSection) =>
@@ -203,7 +203,7 @@ export default function PatientDashboard() {
       }}>
         <Link href="/" className="dk-logo" title="Back to home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/the_klinique_logo-removebg-preview.png" alt="The Klinique" />
+          <img src="/images/skintheralogo-removebg-preview.png" alt="Skinthera" />
         </Link>
 
         <div className="dk-user-badge">
@@ -306,7 +306,7 @@ export default function PatientDashboard() {
 
         <div className="dk-sidebar-foot">
           <p className="dk-email-label">Signed in as</p>
-          <p className="dk-email-value">{user?.email || "patient@theklinique.ph"}</p>
+          <p className="dk-email-value">{user?.email || "patient@skinthera.ph"}</p>
           <button type="button" id="patient-signout-btn" className="dk-signout-btn" onClick={handleSignOut} disabled={signingOut}>
             <i className="fa-solid fa-arrow-right-from-bracket" />
             {signingOut ? "Signing out…" : "Sign Out"}
@@ -414,7 +414,7 @@ export default function PatientDashboard() {
                   <i className="fa-solid fa-calendar-plus dk-cta-strip-icon" />
                   <div>
                     <p className="dk-cta-title">Ready for your next treatment?</p>
-                    <p className="dk-cta-sub">Book with Dr. Kharyl · The Klinique · Cagayan de Oro</p>
+                    <p className="dk-cta-sub">Book with Skinthera · Tacurong City</p>
                   </div>
                 </div>
                 <button type="button" id="overview-book-btn" className="dk-cta-btn" onClick={() => setView("book")}>
@@ -445,7 +445,7 @@ export default function PatientDashboard() {
                 <div>
                   <p className="dk-welcome-label">Appointments</p>
                   <p className="dk-welcome-title">Book and manage visits in one place</p>
-                  <p className="dk-welcome-sub">Your upcoming and past bookings with Dr. Kharyl at The Klinique.</p>
+                  <p className="dk-welcome-sub">Your upcoming and past bookings with Skinthera.</p>
                 </div>
                 <button type="button" className="dk-cta-btn" onClick={() => setView("book")}>
                   <i className="fa-solid fa-calendar-plus" /> Book Now
@@ -462,7 +462,7 @@ export default function PatientDashboard() {
                 <div>
                   <p className="dk-welcome-label">Documents</p>
                   <p className="dk-welcome-title">Medical Documents</p>
-                  <p className="dk-welcome-sub">Consents, prescriptions and clinical files shared by Dr. Kharyl.</p>
+                  <p className="dk-welcome-sub">Consents, prescriptions and clinical files shared by the Skinthera medical team.</p>
                 </div>
               </div>
               <div className="dk-empty">

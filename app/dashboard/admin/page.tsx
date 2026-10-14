@@ -89,7 +89,7 @@ export default function AdminDashboard() {
     const blobUrl = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
     const link = document.createElement("a");
     link.href = blobUrl;
-    link.download = "the-klinique-appointments.csv";
+    link.download = "skinthera-appointments.csv";
     link.click();
     URL.revokeObjectURL(blobUrl);
   };
@@ -129,9 +129,9 @@ export default function AdminDashboard() {
       <aside className="dk-sidebar" onClick={(event) => {
         if ((event.target as HTMLElement).closest(".dk-nav-item")) setMobileNavOpen(false);
       }}>
-        <Link href="/" className="dk-logo" title="The Klinique Home">
+        <Link href="/" className="dk-logo" title="Skinthera Home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/the_klinique_logo-removebg-preview.png" alt="The Klinique" />
+          <img src="/images/skintheralogo-removebg-preview.png" alt="Skinthera" />
         </Link>
 
         <div className="dk-user-badge">
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
 
         <div className="dk-sidebar-foot">
           <p className="dk-email-label">Logged in as</p>
-          <p className="dk-email-value">{user?.email || "superadmin@theklinique.ph"}</p>
+          <p className="dk-email-value">{user?.email || "superadmin@skinthera.ph"}</p>
           <button type="button" id="admin-signout-btn" className="dk-signout-btn" onClick={handleSignOut} disabled={signingOut}>
             <i className="fa-solid fa-arrow-right-from-bracket" />
             {signingOut ? "Signing out…" : "Sign Out Session"}
@@ -192,7 +192,7 @@ export default function AdminDashboard() {
             <p style={{ fontSize: "1rem", fontWeight: 800, color: "#0d0d0d" }}>Clinic Administration Portal</p>
             <p style={{ fontSize: "0.7rem", color: "#9a7a84", marginTop: "0.1rem" }}>
               <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: "#d94f74", marginRight: "0.4rem", verticalAlign: "middle" }} />
-              The Klinique Practice Management · Cagayan de Oro City · Master Access
+              Skinthera Practice Management · Tacurong City · Master Access
             </p>
           </div>
           <div className="dk-topbar-actions">
@@ -476,7 +476,7 @@ export default function AdminDashboard() {
                   <i className="fa-solid fa-receipt" />
                   <div>
                     <p className="dk-panel-title">Financial Ledger & Procedure Sales</p>
-                    <p className="dk-panel-sub">Audited clinic procedure receivables · Cagayan de Oro Branch</p>
+                    <p className="dk-panel-sub">Audited clinic procedure receivables · Tacurong Branch</p>
                   </div>
                 </div>
               </div>
@@ -523,7 +523,7 @@ export default function AdminDashboard() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
                   <div className="dk-info-block">
                     <p className="dk-info-block-title">Clinic Location</p>
-                    <div className="dk-info-row"><span>City:</span><strong>Cagayan de Oro City</strong></div>
+                    <div className="dk-info-row"><span>City:</span><strong>Tacurong City</strong></div>
                     <div className="dk-info-row"><span>Province:</span><strong>Misamis Oriental</strong></div>
                     <div className="dk-info-row"><span>Region:</span><strong>Region X — Northern Mindanao</strong></div>
                     <div className="dk-info-row"><span>ZIP Code:</span><strong>9000</strong></div>

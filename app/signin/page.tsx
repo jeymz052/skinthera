@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { AuthView } from "@/app/auth/page";
 
 export const metadata = {
-  title: "Sign In — The Klinique Medical Aesthetics",
-  description: "Sign in to access your aesthetic appointments, treatment records, and patient portal.",
+  title: "Sign In — Skinthera Medical Aesthetic",
+  description: "Sign in to access your aesthetic appointments, treatment records, and Skinthera patient portal.",
 };
 
 export default function SignInPage() {

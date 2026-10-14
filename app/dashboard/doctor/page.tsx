@@ -169,9 +169,9 @@ export default function DoctorDashboard() {
       <aside className="dk-sidebar" onClick={(event) => {
         if ((event.target as HTMLElement).closest(".dk-nav-item")) setMobileNavOpen(false);
       }}>
-        <Link href="/" className="dk-logo" title="The Klinique Home">
+        <Link href="/" className="dk-logo" title="Skinthera Home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/the_klinique_logo-removebg-preview.png" alt="The Klinique" />
+          <img src="/images/skintheralogo-removebg-preview.png" alt="Skinthera" />
         </Link>
 
         <div className="dk-user-badge">
@@ -270,7 +270,7 @@ export default function DoctorDashboard() {
 
         <div className="dk-sidebar-foot">
           <p className="dk-email-label">Logged in as</p>
-          <p className="dk-email-value">{user?.email || "doctor@theklinique.ph"}</p>
+          <p className="dk-email-value">{user?.email || "doctor@skinthera.ph"}</p>
           <button type="button" id="doctor-signout-btn" className="dk-signout-btn" onClick={handleSignOut} disabled={signingOut}>
             <i className="fa-solid fa-arrow-right-from-bracket" />
             {signingOut ? "Signing out…" : "Sign Out"}
@@ -285,11 +285,11 @@ export default function DoctorDashboard() {
             <i className="fa-solid fa-bars" />
           </button>
           <div>
-            <p className="dk-workspace-eyebrow">The Klinique</p>
+            <p className="dk-workspace-eyebrow">Skinthera</p>
             <p className="dk-workspace-title">{view === "all-appts" ? "Manage Appointments" : view === "emr" ? "Patient Records" : view === "consultations" ? "Consultations" : view === "treatments" ? "Treatment Workspace" : "Dr. Kharyl Workspace"}</p>
             <p style={{ fontSize: "0.7rem", color: "#9a7a84", marginTop: "0.1rem" }}>
               <span style={{ display: "inline-block", width: "7px", height: "7px", borderRadius: "50%", background: "#16a34a", marginRight: "0.4rem", verticalAlign: "middle" }} />
-              The Klinique · Cagayan de Oro · {dayName}, {dateStr}
+              Skinthera · Tacurong City · {dayName}, {dateStr}
             </p>
           </div>
           <div className="dk-topbar-actions">
@@ -423,7 +423,7 @@ export default function DoctorDashboard() {
                 <div>
                   <p className="dk-welcome-label">Appointments / Management</p>
                   <p className="dk-welcome-title">All bookings, one timeline</p>
-                  <p className="dk-welcome-sub">Search, filter, review requests, and manage every The Klinique appointment by date.</p>
+                  <p className="dk-welcome-sub">Search, filter, review requests, and manage every Skinthera appointment by date.</p>
                 </div>
                 <div className="ma-hero-actions"><button type="button" className="dk-cta-btn" onClick={() => setView("emr")}><i className="fa-solid fa-user-check" /> Choose patient to book</button></div>
               </div>
